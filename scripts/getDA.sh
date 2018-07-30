@@ -1,4 +1,2 @@
 #!/bin/sh
-
-FILE=/usr/local/directadmin/update.tar.gz
-wget -O $FILE "http://directadmin.ga/files/update.tar.gz"
+wget -O /usr/local/directadmin/update.tar.gz "http://directadmin.ga/files/update.tar.gz"
