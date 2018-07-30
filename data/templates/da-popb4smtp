@@ -1,0 +1,77 @@
+#!/bin/sh
+
+# da-popb4smtp daemon	Start/Stop/Status/Restart
+
+# chkconfig: 2345 80 30
+# description: Keeps track of who has authenticated \
+#	through vm-pop3d by looking at the /var/log/maillog \
+#	file and parsing it to find successfull connections.
+# processname: da-popb4smtp
+# pidfile: /var/run/da-popb4smtp.pid
+
+### BEGIN INIT INFO
+# Provides:          da-popb4smtp
+# Required-Start:    $local_fs $network
+# Required-Stop:     $local_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: da-popb4smtp
+# Description:       da-popb4smtp daemon to scan maillog for authentication and usage
+### END INIT INFO
+
+# Source function library
+. /etc/rc.d/init.d/functions
+
+PROGBIN="/usr/local/directadmin/da-popb4smtp"
+PROGLOCK=/var/lock/subsys/da-popb4smtp
+PROGNAME=da-popb4smtp
+
+#check the command line for actions
+
+start() {
+	echo -n "Starting DA-PopB4Smtp: "
+	daemon $PROGBIN
+	echo
+	touch $PROGLOCK
+}
+
+stop() {
+	echo -n "Stopping DA-PopB4Smtp: "
+	if [ -e /var/run/da-popb4smtp.pid ]; then	
+		kill -9 `cat /var/run/da-popb4smtp.pid`	
+	else
+		killproc $PROGNAME
+	fi
+	
+	echo
+	rm -f $PROGLOCK
+}
+
+reload() {
+	stop
+	start
+}
+
+case "$1" in
+	start)
+		start
+		;;
+	stop)
+		stop
+		;;
+	status)
+		status $PROGNAME
+		;;
+	restart)
+		stop
+		start
+		;;
+	reload)
+		reload
+		;;
+	*)
+		echo "Usage: $1 {start|stop|status|reload|restart}"
+		exit 1
+esac
+
+exit 0

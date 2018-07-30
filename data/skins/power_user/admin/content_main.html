@@ -1,0 +1,217 @@
+<script language="javascript">
+function doSearch(type)
+{
+	if (document.searchform)
+		with (document.searchform)
+		{
+			if (type == 'user')
+			{
+				value1.value=value.value
+				value8.value='';
+			}
+			else
+			{
+				value8.value=value.value
+				value1.value='';
+			}
+
+			submit();
+		}
+}
+</script>
+<table width="100%" cellspacing=0 cellpadding=0>
+<form action="/CMD_ALL_USER_SHOW" method="GET" name=searchform onSubmit="doSearch('default');">
+<input type=hidden name=comparison1 value="contains">
+<input type=hidden name=comparison8 value="contains">
+<input type=hidden name=sort1 value="1">
+<input type=hidden name=value1 value="">
+<input type=hidden name=value8 value="">
+<tr><td align=center valign=center>
+Search: <input type=text name=value value="contains" size=14 onClick="this.select()">
+<input class=button type=button value="Domain" onClick="doSearch('domain')">
+<input class=button type=button value="User" onClick="doSearch('user')">
+</td></tr>
+</form>
+</table>
+<script language="javascript">
+if (document.searchform)
+{
+	with (document.searchform)
+	{
+		value.focus();
+		value.select();
+	}
+}
+</script>
+
+<table class=list cellspacing=1 cellpadding=5>
+<tr>
+	<td class=listtitle colspan=2>
+		Main Content for Admin
+	</td>
+</tr>
+
+<tr>
+	<td class=list>
+		<a href="CMD_ADMIN_SHOW">Show Admins</a>
+	</td>
+	<td class=list>
+		<a href="CMD_ALL_USER_SHOW">Show All Accounts</a>
+	</td>
+</tr>
+<tr>
+	<td class=list>
+		<a href="CMD_RESELLER_SHOW">Show Resellers</a>
+	</td>
+	<td class=list>
+		<a href="CMD_MANAGE_RESELLER_PACKAGES">Mananage Reseller Packages</a>
+	</td>
+</tr>
+<tr>
+	<td class=list>
+		<a href="CMD_IP_MANAGER">IP Manager</a>
+	</td>
+	<td class=list>
+		<a href="CMD_DNS_ADMIN">DNS Admin</a>
+	</td>
+</tr>
+<tr>
+	<td class=list>
+		<a href="CMD_SHOW_SERVICES">Show Status of Services</a>
+	</td>
+	<td class=list>
+		<a href="CMD_SYSTEM_INFO">Show System Information</a>
+	</td>
+</tr>
+<tr>
+	<td class=list>
+		<a href="CMD_ADMIN_STATS">Complete Stats</a>
+	</td>
+	<td class=list>
+		<a href="CMD_ADMIN_SETTINGS">Set Admin Settings</a>
+	</td>
+</tr>
+
+<tr>
+	<td class=list>
+		<a href="HTM_USER_PASSWD">Change A User/Reseller/Admin Password</a>
+	</td>
+	<td class=list>
+		<a href="CMD_LICENSE">License / Updates</a>
+	</td>
+</tr>
+<tr>
+	<td class=list>
+		<a href="CMD_CUSTOM_HTTPD">Add Custom Httpd Configurations</a>
+	</td>
+	<td class=list>
+		<a href="CMD_PHP_SAFE_MODE">PHP Safe_Mode Configuration</a>
+	</td>
+</tr>
+<tr>
+	<td class=list>
+		<a href="CMD_PLUGIN_MANAGER">Plugin Manager</a>
+	</td>
+	<td class=list>
+		<a href="CMD_SYSTEM_BACKUP">System Backup</a>
+	</td>
+</tr>
+<tr>
+	<td class=list>
+		<a href="CMD_LOG_VIEWER">Log Viewer</a>
+	</td>
+	<td class=list>
+		<a href="CMD_ADMIN_BACKUP">Admin Backup/Transfer</a><br>
+	</td>
+</tr>
+<tr>
+	<td class=list>
+		<a href="/CMD_ADMIN_FILE_EDITOR">File Editor</a><br>
+	</td>
+	<td class=list>
+		<a href="CMD_MULTI_SERVER">Multi Server Setup</a><br>
+	</td>
+</tr>
+<tr>
+	<td class=list>
+		<a href="/CMD_MOVE_USERS">Move Users between Resellers<a><br>
+	</td>
+	<td class=list>
+		<a href="/CMD_MAIL_QUEUE?sort1=2">Mail Queue Administration</a><br>
+	</td>
+</tr>
+<tr>
+	<td class=list>
+		<a href="CMD_ADMIN_CRON_JOBS">All User Cron Jobs</a><br>
+	</td>
+	<td class=list>
+		<a href="CMD_BRUTE_FORCE_MONITOR?sort1=-1&seek_value=-500000">Brute Force Monitor</a><br>
+	</td>
+</tr>
+
+|$/usr/local/bin/php
+<?php
+$data = <<<END
+|PLUGIN_0_ADMIN_TXT|
+END;
+if (strlen($data) > 1)
+{
+echo <<<END
+<tr>
+	<td class=list>
+		$data
+	</td>
+	<td class=list>
+		|PLUGIN_1_ADMIN_TXT|
+	</td>
+</tr>
+END;
+}
+$data = <<<END
+|PLUGIN_2_ADMIN_TXT|
+END;
+if (strlen($data) > 1)
+{
+echo <<<END
+<tr>
+	<td class=list>
+		$data
+	</td>
+	<td class=list>
+		|PLUGIN_3_ADMIN_TXT|
+	</td>
+</tr>
+<tr>
+	<td class=list>
+		|PLUGIN_4_ADMIN_TXT|
+	</td>
+	<td class=list>
+		|PLUGIN_5_ADMIN_TXT|
+	</td>
+</tr>
+<tr>
+	<td class=list>
+		|PLUGIN_6_ADMIN_TXT|
+	</td>
+	<td class=list>
+		|PLUGIN_7_ADMIN_TXT|
+	</td>
+</tr>
+END;
+}
+
+?>
+DONE|
+
+<tr>
+	<td class=listtitle colspan=2>
+		There are <b>|NEWTICKETS|</b> new ticket messages.
+	</td>
+</tr>
+<tr>
+	<td class=list colspan=2>
+		<a href="CMD_TICKET_MANAGE">Manage Reseller/User Tickets</a>
+	</td>
+</tr>
+
+</table>

@@ -1,0 +1,6 @@
+if
+    $h_X-Spam-Status: contains "Yes,"
+then
+    seen finish
+endif
+

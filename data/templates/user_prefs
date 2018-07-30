@@ -1,0 +1,21 @@
+|?RW_HEADER_SUB=rewrite_header subject `subject_tag`|
+|*if subject_tag=""|
+|?RW_HEADER_SUB=|
+|*endif|
+
+|*if VERSION3="yes"|
+required_score |required_hits|
+|RW_HEADER_SUB|
+|*else|
+
+required_hits   |required_hits|
+rewrite_subject |rewrite_subject|
+subject_tag     |subject_tag|
+
+|*endif|
+
+report_safe     |report_safe|
+
+|blacklist_from|
+|whitelist_from|
+

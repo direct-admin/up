@@ -1,0 +1,8 @@
+/var/log/httpd/access_log /var/log/httpd/agent_log /var/log/httpd/error_log /var/log/httpd/referer_log /var/log/httpd/suexec_log /var/log/suphp.log {
+    missingok
+    sharedscripts
+    postrotate
+        /bin/kill -HUP `cat /var/run/httpd.pid 2>/dev/null` 2> /dev/null || true
+    endscript
+}
+

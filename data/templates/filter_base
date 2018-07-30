@@ -1,0 +1,26 @@
+# Exim Filter
+
+# created by |NAME|, version |VERSION|
+# Do not modify this file as any changes will be
+# overwritten when the user makes a change.
+# (data is only written to this file, not read)
+
+|FROM_WHITELIST|
+
+|*if BLOCKLEVEL|
+if
+	$h_X-Spam-Level: contains "|BLOCKLEVEL|"
+then
+	seen finish
+endif
+|*endif|
+
+|SPAMFILTERS|
+
+if error_message then finish endif
+
+|WORDFILTERS|
+
+|ADULTFILTERS|
+
+#end filter

@@ -1,0 +1,16 @@
+# DirectAdmin control panel
+# To reload systemd daemon after changes to this file:
+# systemctl --system daemon-reload
+[Unit]
+Description=POP before SMTP daemon
+After=syslog.target network.target
+Documentation=http://www.directadmin.com
+
+[Service]
+Type=forking
+PIDFile=/run/da-popb4smtp.pid
+ExecStart=/usr/local/directadmin/da-popb4smtp
+WorkingDirectory=/usr/local/directadmin
+
+[Install]
+WantedBy=multi-user.target

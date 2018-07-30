@@ -1,0 +1,23 @@
+|?SUBJECT=Warning: `COUNT` emails have just been sent by `USERNAME`|
+The |USERNAME| account has just finished sending |COUNT| emails.
+There could be a spammer, the account could be compromised, or just sending more emails than usual.
+
+After some processing of the |BYTES_FILE| file, it was found that the highest sender was |TOP_SENDER|, at |TOP_SENDER_COUNT| emails.
+|*if TOP_AUTH_PERCENT>"20"|
+The top authenticated user was |TOP_AUTH|, at |TOP_AUTH_COUNT| emails.
+This accounts for |TOP_AUTH_PERCENT|% of the emails.  The higher the value, the more likely this is the source of the emails.
+An authenticated username is the user and password value used at smtp time to authenticate with exim for delivery.|*endif|
+|*if TOP_HOST_PERCENT>"20"|
+The top sending host was |TOP_HOST|, at |TOP_HOST_COUNT| emails (|TOP_HOST_PERCENT|%).|*endif|
+|*if TOP_PATH_PERCENT>"20"|
+The most common path that the messages were sent from is |TOP_PATH|, at |TOP_PATH_COUNT| emails (|TOP_PATH_PERCENT|%).
+The path value may only be of use if it's pointing to that of a User's home directory.
+If the path is a system path, it likely means the email was sent through smtp rather than using a script.|*endif|
+|*if TOP_PHP_SCRIPT_PERCENT>"20"|
+The top sending script was |TOP_PHP_SCRIPT|, at |TOP_PHP_SCRIPT_COUNT| emails, (|TOP_PHP_SCRIPT_PERCENT|%).|*endif|
+|*if TOP_PHP_SCRIPT_PERCENT>DISABLE_PHP_SCRIPT_AT_LIMIT_THRESHOLD|Because the bulk of the emails have been sent by the script, please check it to confirm it has not been compromised.|*endif|
+|*if SCRIPT_CHMOD_RESULT!=""||SCRIPT_CHMOD_RESULT||*endif|
+
+This warning was generated because the |LIMIT| email threshold was hit.
+
+|MSG_FOOTER|

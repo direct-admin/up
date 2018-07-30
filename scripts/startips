@@ -1,0 +1,62 @@
+#!/bin/bash
+
+# chkconfig: 2345 11 50
+# description: Load ip's into the network device
+
+### BEGIN INIT INFO
+# Provides:          startips
+# Required-Start:    $local_fs $network
+# Required-Stop:     $local_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: startips
+# Description:       script to load in fresh IPs
+### END INIT INFO
+
+case "$1" in
+	stop)
+		exit 0
+		;;
+esac
+
+DACONF=/usr/local/directadmin/conf/directadmin.conf
+IPPATH="/usr/local/directadmin/data/admin/"
+IPDIR="ips/"
+IPLIST="ip.list"
+ADDIP=`cat $DACONF | grep addip | cut -d= -f2`
+
+ETH_DEV=eth0
+
+if [ `cat $DACONF | grep -c ethernet_dev` -gt "0" ]
+then
+	ETH_DEV=`cat $DACONF | grep ethernet_dev | cut -d= -f2 | cut -d: -f1`
+fi
+
+C=0;
+
+for i in `cat ${IPPATH}${IPLIST}`; do
+{
+	if [ "server" != `cat ${IPPATH}${IPDIR}${i} | grep status | cut -d= -f2 | head -n 1` ]
+	then
+		NETMASK=`cat ${IPPATH}${IPDIR}${i} | grep netmask | cut -d= -f2`;
+		$ADDIP $i $NETMASK $ETH_DEV;
+
+		#/sbin/ifconfig $ETH_DEV:$C $i netmask `cat ${IPPATH}${IPDIR}${i} | grep netmask | cut -d= -f2`;
+		#/sbin/route add -host $i dev $ETH_DEV:$C;
+		#C=$(($C+1))
+	else
+		CCOUNT=`echo "$i" | grep -c :`
+		if [ "$CCOUNT" -ge 1 ]; then
+			#IPv6
+			/sbin/route add -A inet6 -host $i dev $ETH_DEV;
+		else
+			/sbin/route add -host $i dev $ETH_DEV;
+		fi
+	fi
+};
+done;
+
+
+echo "action=named&value=restart" >> /usr/local/directadmin/data/task.queue
+
+exit 0;

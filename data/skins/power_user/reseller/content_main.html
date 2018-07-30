@@ -1,0 +1,170 @@
+<script language="javascript">
+function doSearch(type)
+{
+	if (document.searchform)
+		with (document.searchform)
+		{
+			if (type == 'user')
+			{
+				value1.value=value.value
+				value7.value='';
+			}
+			else
+			{
+				value7.value=value.value
+				value1.value='';
+			}
+
+			submit();
+		}
+}
+</script>
+<table width="100%" cellspacing=0 cellpadding=0>
+<form action="/CMD_USER_SHOW" method="GET" name=searchform onSubmit="doSearch('default');">
+<input type=hidden name=comparison1 value="contains">
+<input type=hidden name=comparison7 value="contains">
+<input type=hidden name=value1 value="">
+<input type=hidden name=value7 value="">
+<input type=hidden name=sort1 value="1">
+<tr><td align=center valign=center>
+Search: <input type=text name=value value="contains" size=14 onClick="this.select()">
+<input class=button type=button value="Domain" onClick="doSearch('domain')">
+<input class=button type=button value="User" onClick="doSearch('user')">
+</td></tr>
+</form>
+</table>
+<script language="javascript">
+<!--
+if (document.searchform)
+{
+	with (document.searchform)
+	{
+		value.focus();
+		value.select();
+	}
+}
+function showUserMessage()
+{
+	var message = window.open("CMD_EDIT_USER_MESSAGE","message","width=740,height=520,scrollbars=no,resizable=yes");
+}
+// -->
+</script>
+
+<table class=list cellspacing=1 cellpadding=5>
+<tr>
+	<td class=listtitle colspan=2>
+		Main Content for Reseller
+	</td>
+</tr>
+
+<tr>
+	<td class=list>
+		<a href="HTM_ACCOUNT_USER_CREATE">Create User</a>
+	</td>
+	<td class=list>
+		<a href="CMD_MANAGE_USER_PACKAGES">Manage User Packages</a>
+	</td>
+</tr>
+<tr>
+	<td class=list>
+		<a href="CMD_USER_SHOW">List Users</a>
+	</td>
+	<td class=list>
+		<a href="javascript:showUserMessage();">Edit Welcome Message</a>
+	</td>
+<tr>
+	<td class=list>
+		<a href="CMD_SKINS">Import / Manage Skins</a>
+	</td>
+	<td class=list>
+		<a href="CMD_RESELLER_STATS">Reseller Statistics</a>
+	</td>
+</tr>
+
+
+<tr>
+	<td class=list>
+		<a href="CMD_IP_CONFIG">IP Configuration</a>
+	</td>
+	<td class=list>
+		<a href="CMD_NAME_SERVER">Name Servers</a>
+	</td>
+</tr>
+
+<tr>
+	<td class=list>
+		<a href="CMD_SYSTEM_INFO">Show System Information</a>
+	</td>
+	<td class=list>
+		<a href="/CMD_USER_BACKUP">Manage User Backups</a>
+	</td>
+
+</tr>
+|$/usr/local/bin/php
+<?php
+$data = <<<END
+|PLUGIN_0_RESELLER_TXT|
+END;
+if (strlen($data) > 1)
+{
+echo <<<END
+	<tr>
+		<td class=list>
+			$data
+		</td>
+		<td class=list>
+			|PLUGIN_1_RESELLER_TXT|
+		</td>
+	</tr>
+END;
+}
+$data = <<<END
+|PLUGIN_2_RESELLER_TXT|
+END;
+if (strlen($data) > 1)
+{
+echo <<<END
+	<tr>
+		<td class=list>
+			$data
+		</td>
+		<td class=list>
+			|PLUGIN_3_RESELLER_TXT|
+		</td>
+	</tr>
+	<tr>
+		<td class=list>
+			|PLUGIN_4_RESELLER_TXT|
+		</td>
+		<td class=list>
+			|PLUGIN_5_RESELLER_TXT|
+		</td>
+	</tr>
+	<tr>
+		<td class=list>
+			|PLUGIN_6_RESELLER_TXT|
+		</td>
+		<td class=list>
+			|PLUGIN_7_RESELLER_TXT|
+		</td>
+	</tr>
+END;
+}
+?>
+DONE|
+
+<tr>
+	<td class=listtitle colspan=2>
+		There are <b>|NEWTICKETS|</b> new ticket messages.
+	</td>
+</tr>
+<tr>
+	<td class=list>
+		<a href="CMD_TICKET_MANAGE">Manage User Tickets</a>
+	</td>
+	<td class=list>
+		<a href="CMD_TICKET_CREATE?TYPE=Message&who=all">Message All Users</a>
+	</td>
+</tr>
+
+</table>

@@ -1,0 +1,33 @@
+|?SET_TTL=`DEFAULT_TTL`|
+|?NS_TIME=`SET_TTL`|
+|?A_TIME=`SET_TTL`|
+|?MX_TIME=`SET_TTL`|
+|?CNAME_TIME=`SET_TTL`|
+|?PTR_TIME=`SET_TTL`|
+|?TXT_TIME=`SET_TTL`|
+|?AAAA_TIME=`SET_TTL`|
+|?SRV_TIME=`SET_TTL`|
+|?SPF_TIME=`SET_TTL`|
+|?TLSA_TIME=`SET_TTL`|
+|?CAA_TIME=`SET_TTL`|
+|?DS_TIME=`SET_TTL`|
+$TTL |SET_TTL|
+@       IN      SOA     |NS1|      |EMAIL| (
+                                                |SERIAL|
+                                                |SET_TTL|
+                                                3600
+                                                1209600
+                                                86400 )
+
+|NS|
+|A|
+|MX|
+|CNAME|
+|PTR|
+|TXT|
+|AAAA|
+|SRV|
+|SPF|
+|TLSA|
+|CAA|
+|DS|

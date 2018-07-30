@@ -1,0 +1,14 @@
+# default: on
+# description: imaps / port 993
+service imaps
+{
+	disable = no
+	socket_type = stream
+	wait = no
+	user = root
+	server = /usr/sbin/stunnel
+	server_args = -T -p /etc/stunnel/stunnel.pem -l /usr/sbin/imapd
+	#log_on_success += DURATION USERID
+	#log_on_failure += USERID
+	nice = 10
+}

@@ -1,0 +1,5 @@
+|?DOMAINCOND=RewriteCond %{REQUEST_URI} !^/~`USERNAME`/`DOMAIN`(.*) [NC]|
+RewriteEngine On
+|DOMAINS|
+RewriteRule ^(.*)$ /~|USERNAME|/|DEFFAULT_DOMAIN|/$1
+

@@ -1,0 +1,5 @@
+MIME-Version: 1.0
+Content-Type: |Content-Type|; charset=|charset|
+|*if charset="UTF-8"|
+Content-Transfer-Encoding: 8bit
+|*endif|

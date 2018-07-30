@@ -1,0 +1,65 @@
+|?TREE=&raquo; <a class=tree href="/CMD_SHOW_DOMAIN?domain=`DOMAIN`">`DOMAIN`</a> &raquo; <a class=tree href="/HTM_EMAIL?DOMAIN=`DOMAIN`">Email</a>|
+|?HELP_SECTION=`USER_HELPER`/email.html|
+|HTM_USER_TOP|
+
+<table class=list  cellpadding=3 cellspacing=1>
+<tr>
+<td class=list><a href="CMD_EMAIL_POP?DOMAIN=|DOMAIN|">E-Mail accounts</a></td>
+</tr>
+|*if USERCATCHALL="ON"|
+<tr>
+<td class=list><a href="CMD_EMAIL_CATCH_ALL?DOMAIN=|DOMAIN|">Set catch-all e-mail address</a></td>
+</tr>
+|*endif|
+<tr>
+<td class=list><a href="CMD_EMAIL_FORWARDER?DOMAIN=|DOMAIN|">Forwarders</a></td>
+</tr>
+<tr>
+<td class=list><a href="CMD_EMAIL_AUTORESPONDER?DOMAIN=|DOMAIN|">Autoresponders</a></td>
+</tr>
+<tr>
+<td class=list><a href="CMD_EMAIL_VACATION?DOMAIN=|DOMAIN|">Vacation Messages</a></td>
+</tr>
+<tr>
+<td class=list><a href="CMD_EMAIL_LIST?DOMAIN=|DOMAIN|">Mailing lists</a></td>
+</tr>
+<tr>
+<td class=list><a href="CMD_EMAIL_FILTER?DOMAIN=|DOMAIN|">Filters</a></td>
+</tr>
+|*if USERSPAM="ON"|
+<tr>
+<td class=list><a href="CMD_SPAMASSASSIN?domain=|DOMAIN|">SpamAssassin</a></td>
+</tr>
+|*endif|
+<tr>
+<td class=list><a href="CMD_DNS_MX?domain=|DOMAIN|">Modify MX Records</a></td>
+</tr>
+
+|*if HIDE_WEBMAIL_LINKS="yes"|
+	|?HAVE_SQUIRRELMAIL=no|
+	|?HAVE_WEBMAIL=no|
+	|?HAVE_ROUNDCUBE=no|
+	|?HAVE_ATMAIL=no|
+|*endif|
+
+|*if HAVE_SQUIRRELMAIL="yes"|
+<tr>
+<td class=list><a target=_blank href="|WEBAPPS_SSL|://|HOSTNAME|/squirrelmail">WebMail - SquirrelMail</a></td>
+</tr>
+|*endif|
+|*if HAVE_WEBMAIL="yes"|
+<tr>
+<td class=list><a target=_blank href="|WEBAPPS_SSL|://|HOSTNAME|/webmail">WebMail - UeBiMiau</a></td>
+</tr>
+|*endif|
+|*if HAVE_ROUNDCUBE="yes"|
+<tr>
+<td class=list><a target=_blank href="|WEBAPPS_SSL|://|HOSTNAME|/roundcube">WebMail - Roundcube</a></td>
+</tr>
+|*endif|
+
+</table>
+<br>
+<a href="/CMD_SHOW_DOMAIN?domain=|DOMAIN|">Back</a>
+
+|HTM_USER_BOTTOM|

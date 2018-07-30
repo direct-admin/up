@@ -1,0 +1,14 @@
+|?TREE=&raquo; <a class=tree href="/CMD_SHOW_DOMAIN?domain=`DOMAIN`">`DOMAIN`</a> &raquo; <a class=tree href="/HTM_EMAIL?DOMAIN=`DOMAIN`">Email</a> &raquo; <a class=tree href="/CMD_EMAIL_POP?DOMAIN=`DOMAIN`">Pop Accounts</a>|
+|?HELP_SECTION=`USER_HELPER`/email.html#pop3|
+|HTM_USER_TOP|
+
+|*if EMAIL_MESSAGE!=""|
+<b>|EMAIL_MESSAGE|</b><br><br>
+|*endif|
+
+<a href="HTM_EMAIL_POP_CREATE?DOMAIN=|DOMAIN|&DEFAULT_POP_QUOTA=|DEFAULT_POP_QUOTA|&USER_CAN_SET_SEND_LIMIT=|USER_CAN_SET_SEND_LIMIT|&GLOBAL_PER_EMAIL_LIMIT=|GLOBAL_PER_EMAIL_LIMIT|">Create mail account</a><br>
+<a href="CMD_EMAIL_USAGE?domain=|DOMAIN|">E-Mail Usage</a><br>
+
+|POPACCOUNTS|
+
+|HTM_USER_BOTTOM|

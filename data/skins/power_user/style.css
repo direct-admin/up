@@ -1,0 +1,372 @@
+*
+{
+	FONT-SIZE: 8.5pt;
+	FONT-FAMILY: verdana, arial, helvetica, sans-serif;
+}
+
+a
+{
+	TEXT-DECORATION: underline;
+	COLOR: black;
+}
+
+a:hover
+{
+	COLOR: #9999CC;
+}
+
+.toptext
+{
+	COLOR: #666666;
+}
+
+u
+{
+	TEXT-DECORATION: underline;
+}
+
+.tree
+{
+	COLOR: #EE0000;
+}
+
+.title
+{
+	COLOR: #000000;
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 12pt;
+}
+
+td.header
+{
+	FONT-WEIGHT: 600;
+	FONT-SIZE: 10pt;
+	COLOR: #EEEEEE;
+	BACKGROUND: #425984;
+}
+
+.menu
+{
+	//border: 1px solid ababab;
+	//border-style: outset;
+}
+
+table.menu
+{
+	BACKGROUND: #FFFFFF;
+	border-radius: 5px;
+	
+	border: 1px solid #ababab;
+	border-style: outset;
+	
+}
+
+td.menu
+{
+	BACKGROUND: #EEEEEE;
+	COLOR: #000000;
+	white-space: nowrap;
+	border-radius: 5px;
+	
+	border: 1px solid #e5e5e5;
+	border-style: outset;
+	
+}
+
+table.tabs
+{
+	width: 100%;
+	border-width: 1;
+	border-bottom-style:solid;
+	border-left-style: none;
+	border-top-style: none;
+	border-right-style: none;	
+	border-color: black;
+	border-collapse:collapse
+}
+
+td.tab
+{
+	BACKGROUND: #6A85B5;
+}
+
+td.tabselected
+{
+	BACKGROUND: #425984;
+}
+
+td.tab, td.tabselected, .highlighted
+{
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	white-space: nowrap;
+}
+
+
+td.tabspace
+{
+	width: 1%;
+}
+
+.highlighted
+{
+	BACKGROUND: #8CA0C6;
+	cursor: hand;
+}
+
+.nowrap
+{
+	white-space: nowrap;
+}
+
+a.tabtext
+{
+	COLOR: #EEEEEE;
+	TEXT-DECORATION: none
+}
+
+a.tabtext:hover
+{
+	COLOR: #EEEEEE;
+	TEXT-DECORATION: none
+}
+
+table.list
+{
+	BACKGROUND: #FFFFFF;
+	width: 100%;
+}
+table.list td
+{
+	padding-left: 5px;
+	padding-right: 5px;
+	white-space: nowrap;
+}
+td.list
+{
+	BACKGROUND: #EEEEEE;
+	
+}
+td.list2
+{
+	BACKGROUND: #E3E3E3;
+}
+
+td.listwrap
+{
+	BACKGROUND: #EEEEEE;
+	white-space: wrap;
+}
+td.listwrap2
+{
+	BACKGROUND: #E3E3E3;
+	white-space: wrap;
+}
+
+.listtitle
+{
+	BACKGROUND: #425984;
+	COLOR: #EEEEEE;
+	white-space: nowrap;
+	
+	border-radius: 3px;
+	box-shadow: 1px 1px 3px #727272;
+	
+}
+
+td.listtitle
+{
+	border: 1px solid grey;
+	border-style: outset;
+}
+
+.trim
+{
+	border: 1px solid #8CB7D0;
+}
+
+.highlighted-good
+{
+	COLOR: green;
+}
+.highlighted-bad
+{
+	COLOR: red;
+	FONT-WEIGHT: bold;
+}
+.highlighted-neutral
+{
+	COLOR: orange;
+}
+
+.top-border
+{
+	border: 0px solid white;
+	border-top: 1px solid grey;
+}
+
+textarea.code_edit
+{
+	FONT-FAMILY: courier new;
+	FONT-SIZE: 10pt;
+}
+
+textarea.ssl_text
+{
+	width: 540px;
+	height: 600px;
+}
+
+.warning
+{
+	COLOR: #b10000;
+	FONT-WEIGHT: bold;
+}
+
+td.header, .bars, table.menu {
+	border-radius: 5px;
+	box-shadow: 2px 2px 5px #cccccc;
+}
+
+.bars
+{
+	background: #C0C0C0;
+	padding-left: 10px;
+	padding-right: 10px;
+	
+}
+
+td.list2
+{
+	background: -webkit-linear-gradient(#e7e7e7, #dfdfdf); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(#e7e7e7, #dfdfdf); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(#e7e7e7, #dfdfdf); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(#e7e7e7, #dfdfdf); /* Standard syntax */
+}
+
+
+.light_grey_gradient, td.menu, td.list
+{
+	background: -webkit-linear-gradient(#f5f5f5, #eaeaea); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(#f5f5f5, #eaeaea); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(#f5f5f5, #eaeaea); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(#f5f5f5, #eaeaea); /* Standard syntax */
+}
+
+.grey_gradient, .bars
+{
+	background: -webkit-linear-gradient(#dee2e7, #bac0c7); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(#dee2e7, #bac0c7); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(#dee2e7, #bac0c7); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(#dee2e7, #bac0c7); /* Standard syntax */
+}
+.blue_gradient, td.header, td.tabselected, .listtitle
+{
+	background: -webkit-linear-gradient(#4c6492, #425983); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(#4c6492, #425983); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(#4c6492, #425983); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(#4c6492, #425983); /* Standard syntax */
+}
+
+button, input[type="button"], input[type="submit"]
+{
+	border-radius: 5px;
+}
+.path_hidden
+{
+	visibility: hidden;
+}
+.path_visible
+{
+	visibility: visible;
+}
+.expand_toggle_neg
+{
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.expand_toggle_plus
+{
+	padding-left: 3px;
+	padding-right: 3px;
+}
+.expand_toggle_neg:active, .expand_toggle_plus:active
+{
+	background: #666e8a;
+	border: 1px inset #c5cff1;
+	box-shadow: none;
+}
+.expand_toggle_neg, .expand_toggle_plus
+{
+	background: #98a5d2;
+	color: white;
+	margin-right: 10px;
+	#padding: 1px;
+	border-radius: 3px;
+	border: 1px outset #c5cff1;
+	box-shadow: 1px 1px 3px #969696;
+	
+	cursor:pointer;
+}
+.message
+{
+	padding: 15px;
+}
+
+.message, td.message_info
+{
+	box-shadow: 1px 1px 3px #727272;
+}
+
+td.message_info_round_top
+{
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+}
+td.message_info_round_bottom, .message_round
+{
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+td.message_info
+{
+	padding: 5px;
+}
+
+.message_info
+{
+	COLOR: #777777;
+}
+.good_twostep_auth_code, .bad_twostep_auth_code
+{
+	display: inline-block;
+	text-align: center;
+
+	background-repeat: no-repeat;
+	background-position: bottom;
+
+	min-width: 50px;
+	padding-bottom: 50px;
+}
+.good_twostep_auth_code {
+	background-image: url(IMG_CHECKBOX);
+}
+.bad_twostep_auth_code {
+	background-image: url(IMG_INCORRECT);
+}
+.no_decore {
+	TEXT-DECORATION: none;
+}
+.warning_info {
+	background: #ffffcc;
+	border: 1px solid #ff9900;
+	color: #4d3300;
+	text-align: center;
+	margin-bottom: 20px;
+	padding: 10px;
+}
+.green_lock {
+	FONT-SIZE: 12pt;
+	color: transparent;  
+	text-shadow: 0 0 0 #009900;
+}

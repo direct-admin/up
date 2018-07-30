@@ -1,0 +1,23 @@
+if
+    $h_X-Spam-Status: contains "Yes,"
+then
+    if
+        $local_part is "|USERNAME|"
+    then
+|*if DOVECOT="yes"|
+        save |HOME|/Maildir/.|INBOX_SPAM|/new/ 660
+    else
+        if "${if exists{|HOME|/imap/${domain}/${local_part}}{yes}{no}}" is "yes"
+        then
+            save |HOME|/imap/$domain/$local_part/Maildir/.|INBOX_SPAM|/new/ 660
+        else
+            save |HOME|/Maildir/.|INBOX_SPAM|/new/ 660
+        endif
+|*else|
+        save |HOME|/.spamassassin/spam 660
+    else
+        save |HOME|/.spamassassin/user_spam/$local_part@$domain 660
+|*endif|
+    endif
+    finish
+endif

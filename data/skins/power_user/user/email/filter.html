@@ -1,0 +1,66 @@
+|?TREE=&raquo; <a class=tree href="/CMD_SHOW_DOMAIN?domain=`DOMAIN`">`DOMAIN`</a> &raquo; <a class=tree href="/HTM_EMAIL?DOMAIN=`DOMAIN`">Email</a> &raquo; <a class=tree href="/CMD_EMAIL_FILTER?DOMAIN=`DOMAIN`">Email Filters</a>|
+|?HELP_SECTION=`USER_HELPER`/email.html#filters|
+|HTM_USER_TOP|
+<table class=list  cellpadding=3 cellspacing=1>
+
+<tr><td class=listtitle colspan=3><b>E-mail Filters</b></td></tr>
+
+<form action='/CMD_EMAIL_FILTER' method='POST'>
+	<input type=hidden name=action value=add>
+	<input type=hidden name=domain value="|DOMAIN|">
+	<input type=hidden name=type value="email">
+	<tr><td class=list>Block a specific e-mail address:</td><td class=list><input type=text name=value></td>
+	<td class=list align=center><input type=submit name=add value="Block" ></td></tr>
+</form>
+
+<form action='/CMD_EMAIL_FILTER' method='POST'>
+	<input type=hidden name=action value=add>
+	<input type=hidden name=domain value="|DOMAIN|">
+	<input type=hidden name=type value="domain">
+	<tr><td class=list>Block mail from an entire domain:</td><td class=list><input type=text name=value></td>
+	<td class=list align=center><input type=submit name=add value="Block" ></td></tr>
+</form>
+
+<form action='/CMD_EMAIL_FILTER' method='POST'>
+	<input type=hidden name=action value=add>
+	<input type=hidden name=domain value="|DOMAIN|">
+	<input type=hidden name=type value="word">
+	<tr><td class=list>Block all e-mail containing the word:</td><td class=list><input type=text name=value></td>
+	<td class=list align=center><input type=submit name=add value="Block" ></td></tr>
+</form>
+
+<form action='/CMD_EMAIL_FILTER' method='POST'>
+	<input type=hidden name=action value=add>
+	<input type=hidden name=domain value="|DOMAIN|">
+	<input type=hidden name=type value="size">
+	<tr><td class=list>Block all e-mail larger than:</td><td class=list><input type=text name=value>Kb</td>
+	<td class=list align=center><input type=submit name=add value="Block" ></td></tr>
+</form>
+
+<form action='/CMD_EMAIL_FILTER' method='POST'>
+	<input type=hidden name=action value=adult>
+	<input type=hidden name=domain value="|DOMAIN|">
+	<tr><td class=list colspan=2>Enable adult filter: (blocks out common adult phrases, words, and addresses) <b>|STATE|</b></td>
+	<td class=list align=center><input type=submit name=add value="|ADULT|" ></td></tr>
+</form>
+
+<form action='/CMD_EMAIL_FILTER' method='POST'>
+	<input type=hidden name=action value=action>
+	<input type=hidden name=domain value="|DOMAIN|">
+	<tr><td class=list colspan=2>
+		Action for filter matches:&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type=radio name=value value="drop" |DROP_CHECKED|> Drop Email
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type=radio name=value value="email" |EMAIL_CHECKED|> Send to spambox
+	</td>
+	<td class=list align=center><input type=submit name=add value="Save" ></td></tr>
+</form>
+
+</table>
+
+|FILTERS|
+<br>
+Note: the word filter matches partial words.  For example, if you block the word "put" and the email contains "com<b>put</b>er", then the email will be blocked.  If you expect it to be it's own word, then block "&nbsp;put&nbsp;", with spaces beside it to avoid partial matching.
+
+
+|HTM_USER_BOTTOM|

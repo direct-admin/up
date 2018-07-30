@@ -1,0 +1,79 @@
+|?TREE=&raquo; <a class=tree href="/CMD_CUSTOM_HTTPD">Custom Httpd Configurations</a> &raquo; <a class=tree href="/CMD_CUSTOM_HTTPD?user=`user`&php-fpm=`php-fpm`">php-fpm `php-fpm`|
+|?HELP_SECTION=`ADMIN_HELPER`|
+|HTM_HEADER|
+
+|HTM_TAB_ADMIN|
+
+|*if CONFIG_ERROR="1"|
+<center>
+<br><br><b>Configuration Syntax Error - See below for details</b><br><br><br>
+</center>
+|*endif|
+
+<table class=list>
+<form action="/CMD_CUSTOM_HTTPD" method="POST">
+<input type=hidden name=user value="|user|">
+<input type=hidden name=php-fpm value="|php-fpm|">
+<tr>
+	<td class=listtitle>PHP-FPM config customization for |user| <b>php-fpm |php-fpm|</b></td>
+</tr>
+<tr>
+	<td class=list align=center>Add the code to be inserted into the CUSTOM tokens<br>
+		<b>&#124;CUSTOM1&#124;</b><br>
+		<textarea class="code_edit" cols=160 rows=4 wrap=off name=custom1>|CUSTOM1|</textarea>
+
+		<br><br>
+
+		<b>&#124;CUSTOM2&#124;</b><br>
+		<textarea class="code_edit" cols=160 rows=4 wrap=off name=custom2>|CUSTOM2|</textarea>
+
+		<br><br>
+	</td>
+</tr>
+<script type="text/javascript" src="JS_VISIBILITY"></script>
+<tr><td class=list colspan=2><span class=expand_toggle_plus id=tokens_toggle onclick="toggle_expand('tokens_toggle', 'tokens_visibility');">+</span> Available Tokens</td></tr>
+<tr id=tokens_visibility style="display: none;">
+	<td class=list align=center>
+		<textarea class="code_edit" cols=160 rows=30 wrap=off readonly>|AVAILABLE_TOKENS|</textarea>
+	</td>
+</tr>
+<tr><td class=list2 colspan=2><span class=expand_toggle_plus id=templates_toggle onclick="toggle_expand('templates_toggle', 'templates_visibility');">+</span> |PHP_FPM_TEMPLATE_NAME| |*if PHP_FPM_IS_CUSTOM_TEMPLATE="1"|&nbsp;&nbsp;&nbsp; <b>*** Custom Template ***</b>|*endif|</td></tr>
+<tr id=templates_visibility style="display: none;">
+	<td class=list>
+		<textarea class="code_edit" class="code_edit" cols=160 rows=35 wrap=off readonly>|PHP_FPM_TEMPLATE|</textarea>
+	</td>
+</tr>
+<tr>
+	<td class=listtitle align=right><input type=submit value="Save"></td>
+</tr>
+</form>
+</table>
+
+<table class=list>
+<tr>
+	<td class=listtitle>
+		|FPM_CONFIG_FILE|
+	</td>
+</tr>
+<tr>
+	<td class=list align=center>
+		<textarea class="code_edit" cols=160 rows=20 wrap=off readonly>|FPM_CONFIG|</textarea>
+	</td>
+</tr>
+</table>
+
+<table class=list>
+<tr>
+	<td class=listtitle>
+	Configuration Check
+	</td>
+</tr>
+<tr>
+	<td class=list align=center>
+		<textarea class="code_edit" cols=160 rows=5 wrap=off readonly>|CONFIG_TEST|</textarea>
+	</td>
+</tr>
+</table>
+
+
+|HTM_FOOTER|

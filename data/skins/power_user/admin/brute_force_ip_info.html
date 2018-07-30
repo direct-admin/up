@@ -1,0 +1,31 @@
+|?TREE=&raquo; <a class=tree href="/CMD_BRUTE_FORCE_MONITOR">Brute Force Monitor</a>|
+|?HELP_SECTION=`ADMIN_HELPER`|
+|HTM_HEADER|
+
+|HTM_TAB_ADMIN|
+
+<br>
+<b>IP Information</b> on |BLOCK_IP|<br>
+
+<textarea cols=125 rows=30 readonly>|IPINFO|</textarea>
+<br><br>
+
+|*if HAVE_BLOCK_SH="1"|
+<table class=list cellpadding=3 cellspacing=1>
+<form name=blockform action='?' method='POST'>
+	<input type='hidden' name='ip' value='|BLOCK_IP|'>
+	<input type='hidden' name='action' value='block'>
+
+<tr><td class=listtitle>Custom block_ip.sh script found.  Click the button below to pass the IP to the script.</td></tr>
+<tr><td class=list align=center>
+	<input type='button' value='Block This IP' onclick="if (confirm('Are you sure you want to block this IP? |BLOCK_IP|')){document.blockform.submit();}">
+</td></tr></tr>
+</form>
+</table>
+|*else|
+No custom/block_ip.sh found.  You can create this optional script if you'd like to be able to block an IP from the control panel.<br>See:
+<a target=_blank href="http://www.directadmin.com/features.php?id=1229">http://www.directadmin.com/features.php?id=1229</a>
+|*endif|
+
+
+|HTM_FOOTER|

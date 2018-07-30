@@ -1,0 +1,139 @@
+# SySBK 1.0 [sysbk@r-fx.net]
+#
+# NOTE: This file should be edited with word/line wrapping off,
+#       if your using pico please start it with the -w switch.
+#       (e.g: pico -w filename)
+#
+# [ Main Config ]
+#
+OS="`uname`";
+if [ -e /etc/debian_version ]; then
+	OS="debian";
+fi
+
+
+INSPATH="/usr/local/sysbk" 				# Installation path of SySBK
+MODPATH="$INSPATH/mod"					# Module path for sysbk backup modules
+CNF_INT="$INSPATH/internals/conf.internals"     	# Path to internals config
+							#
+MOUNT_POINT="|MOUNT_POINT|" 					# Mount point backups are stored on
+							#
+BACKUP_PATH="|BACKUP_PATH|"				# Backup path relative to mount point [e.g: /home/backups]
+			    				# If this directory does not exist it will be created
+							#
+MIN_DISK="|MIN_DISK|"					# Min. amount of availible disk space required to perform backups
+							#
+MAX_LOAD="3"						# Max load level that the system must be below to perform backups
+	     						# No fractional values (e.g: 2.5)
+							#
+if [ "$OS" = "FreeBSD" ]; then
+	ARC_PRI="/usr/bin/tar -cpzf"
+else
+	ARC_PRI="/bin/tar -cpzf" 			# Primary compression utility (typicaly tar) - include arguments!!
+fi
+ARC_PRI_EXT=".tar.gz" 					# File extention for the primary compression utility
+ARC_SEC=""	 					# Secondary compression utility (typicaly bzip2) - include arguments!!
+		    					# If no value set, will only archive with Primary compression utility
+							#
+ARC_SEC_EXT="" 						# File extention for the secondary compression utility
+							#
+PRI="16" 						# Priority to run backups as. 21 = lowest priority, -19 = highest 
+	 						# [NOTE: setting below value of 0 can damage the system.]
+							#
+DU="/usr/bin/du" 					# Path to 'du' binary
+if [ "$OS" = "FreeBSD" ]; then
+	MD5="/sbin/md5 -r"
+	GUNZIP="/usr/bin/gunzip"
+	NICE="/usr/bin/nice"
+else
+	MD5="/usr/bin/md5sum"				# Path to md5sum binary
+	GUNZIP="/bin/gunzip"				# Path to 'gunzip' binary
+	NICE="/bin/nice"				# Path to 'nice' binary
+
+        if [ -e /etc/debian_version ]; then
+                NICE="/usr/bin/nice"
+        fi
+
+fi
+
+
+# [ Transfer Module Config  ]
+#
+USE_RTRANS="|USE_RTRANS|"				# Enable remote transfer of backup data [1=on,0=off]
+RTRANS_METHOD="|RTRANS_METHOD|"				# Transport method for remote transfer [valid methods: ftp, scp]
+							#
+DEL_AFTERTRANS="|DEL_AFTERTRANS|"			# Delete the local date specific backup path after remote transfer
+                                                        # of backup. (e.g: /home/backup/12-24-02) [1=on,0=off]
+							#
+FBF_RTRANS="|FBF_RTRANS|"				# File by file backup (incramental). Archives backups one at a time,
+							# transfers remote, then deletes local.
+							#
+NCFTP_PUT="/usr/bin/ncftpput"				# Path to 'ncftpput' binary
+	FTP_HOST="|FTP_HOST|"				# The host/ip of desired ftp site
+	FTP_USER="|FTP_USER|"				# Username for ftp transfer of backups [remote user]
+	FTP_PASS="|FTP_PASS|"				# Password for above user...
+	FTP_RPATH="|FTP_RPATH|"				# Remote path to store data, relative to remote user permissions
+SCP="/usr/bin/scp"					# Path to 'scp' binary
+	SCP_HOST="|FTP_HOST|"				# The host/ip of desired scp site
+	SCP_USER="|FTP_USER|"				# Username for scp transfer of backups [remote user]
+	SCP_RPATH="|FTP_RPATH|"				# Remote path to store data, relative to remote user permissions
+	PRVID_FILE="/root/.ssh/id_dsa"			# Private key file for public/private key identification
+							# (e.g: /root/.ssh/id_dsa)
+
+# [ Backup Module Config ]			
+#						
+# HTTP						
+#						
+HTTP_BK="|HTTP_BK|"					# Enable/Disable apache backup operations [1=on,0=off]
+HTTP_PATH="/etc/httpd"					# Path to apache base directory [no trailing slash]
+
+# DNS
+#
+BIND_BK="|BIND_BK|"						# Enable/Disable bind backup operations [1=on,0=off]
+if [ "$OS" = "FreeBSD" ]; then
+	BIND_PATH="/etc/namedb"
+	BIND_CNF="/etc/namedb/named.conf"
+else
+	if [ "$OS" = "debian" ]; then
+		BIND_PATH="/etc/bind"
+		BIND_CNF="/etc/bind/named.conf"
+	else
+		BIND_PATH="/var/named"					# Path to your bind zone files [no trailing slash]
+		BIND_CNF="/etc/named.conf"				# Location of named.conf
+	fi
+fi
+
+# MySQL
+#
+MYSQL_BK="|MYSQL_BK|"						# Enable/Disable mysql backup operations [1=on,0=off]
+if [ "$OS" = "FreeBSD" ]; then
+	MYSQL_PATH="/home/mysql"
+	MYSQL_INIT="/usr/local/etc/rc.d/mysqld"
+	MYSQL_PID="$MYSQL_PATH/`hostname -s`.pid"
+	MYSQL_DUMP="/usr/local/mysql/bin/mysqldump"
+	MYSQL_MYICHK="/usr/local/mysql/bin/myisamchk"
+else
+	if [ "$OS" = "debian" ]; then
+	        MYSQL_PATH="/home/mysql"
+        	MYSQL_INIT="/etc/init.d/mysqld"
+	        MYSQL_PID="$MYSQL_PATH/`hostname -s`.pid"
+	        MYSQL_DUMP="/usr/local/mysql/bin/mysqldump"
+	        MYSQL_MYICHK="/usr/local/mysql/bin/myisamchk"
+	else
+		MYSQL_PATH="/var/lib/mysql"				# Installed location of mysql [no trailing slash]
+		MYSQL_INIT="/etc/init.d/mysqld"				# Locationof MySQL INIT script
+		MYSQL_PID="$MYSQL_PATH/`hostname`.pid"			# Location of MySQL PID file
+		MYSQL_DUMP="/usr/bin/mysqldump"				# Path to the 'mysqldump' binary
+		MYSQL_MYICHK="/usr/bin/myisamchk"				# Path to the 'myisamchk' binary
+	fi
+fi
+MYSQL_ROOTUN="`cat /usr/local/directadmin/conf/mysql.conf | grep user | cut -d= -f2`"		# MySQL Root login
+MYSQL_ROOTPW="`cat /usr/local/directadmin/conf/mysql.conf | grep passwd | cut -d= -f2`"		# MySQL Root password
+
+# Custom
+#
+CUSTOM_BK="|CUSTOM_BK|"					# Enable/Disable custom backup operations [1=on,0=off]
+CUSTOM_FILES="$MODPATH/custom.files"			# Fule list for custom backup operations
+CUSTOM_DIRS="$MODPATH/custom.dirs"			# Directory list for custom backup operations
+
+ADD_USERS_TO_LIST="|ADD_USERS_TO_LIST|"

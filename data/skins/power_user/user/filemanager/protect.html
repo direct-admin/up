@@ -1,0 +1,24 @@
+|?TREE=&raquo; <a class=tree href="/CMD_FILE_MANAGER">FileManager</a> &raquo; <a class=tree href="/CMD_FILE_MANAGER`path`">`path`</a>|
+|?HELP_SECTION=`USER_HELPER`/misc.html#password|
+|HTM_USER_TOP|
+
+<table class=list style='width: 65%' cellpadding=3 cellspacing=1>
+<form name=info action='/CMD_FILE_MANAGER' method='POST'>
+<input type=hidden name=action value="protect">
+<input type=hidden name=path value="|path|">
+
+<tr><td class=listtitle colspan=2>Password Protection on |path|</td ></tr>
+<tr><td class=list>Protected Directory Prompt:</td><td class=list><input type=text name=name value="|NAME|"> eg: Member's Area</td></tr>
+<tr><td class=list>Set/Update User:</td><td class=list><input type=text name=user> (Not required)</td></tr>
+<tr><td class=list>and Password:</td><td class=list><input type=password name=passwd></td></tr>
+<tr><td class=list>Re-Enter Password:</td><td class=list><input type=password name=passwd2></td></tr>
+<tr><td class=listtitle colspan=2 align=right>Protection Enabled: <input type=checkbox name=enabled value="yes" |ENABLED|> <input type=submit value="Save"></td ></tr >
+</table>
+</form>
+
+|USERS|
+
+<br>
+Go back to the list of <a href="/CMD_PROTECTED_DIRECTORIES?domain=|domain|">Password Protect Directories</a><br>
+
+|HTM_USER_BOTTOM|

@@ -1,0 +1,8 @@
+/var/log/directadmin/error.log /var/log/directadmin/errortaskq.log /var/log/directadmin/security.log /var/log/directadmin/system.log /var/log/directadmin/login.log {
+	missingok
+	create 0644 diradmin diradmin
+	sharedscripts
+	postrotate
+		find /var/log/directadmin -name "20*log*" -mtime +30 -exec /bin/rm -f {} \; >/dev/null 2>&1 || true
+	endscript
+}

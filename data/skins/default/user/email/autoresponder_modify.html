@@ -1,0 +1,24 @@
+|?TREE=&raquo; <a class=tree href="/CMD_SHOW_DOMAIN?domain=`DOMAIN`">`DOMAIN`</a> &raquo; <a class=tree href="/HTM_EMAIL?DOMAIN=`DOMAIN`">Email</a> &raquo; <a class=tree href="/CMD_EMAIL_AUTORESPONDER?DOMAIN=`DOMAIN`">Autoresponders</a> &raquo; <a class=tree href="/CMD_EMAIL_AUTORESPONDER_MODIFY?DOMAIN=`DOMAIN`&user=`user`">Modify `user`</a>|
+|?HELP_SECTION=`USER_HELPER`/email.html#auto|
+|HTM_USER_TOP|
+
+<table class=list cellpadding=3 cellspacing=1>
+	<form name=info action="CMD_EMAIL_AUTORESPONDER" method="post">
+		<input type=hidden name=action value=modify>
+		<input type=hidden name=domain value="|DOMAIN|">
+		<input type=hidden name=user value="|USER|">
+
+		<tr><td class=listtitle colspan=2>Modify Autoresponder Message</td></tr>
+
+		<tr><td class=list>Responder Address:</td><td class=list>|USER|@|DOMAIN|</td></tr>
+		<tr><td class=list>Responder Message:</td><td class=list align=center><textarea rows=15 cols=60 name=text>|TEXT|</textarea></td></tr>
+
+		<tr><td class=list><input type=checkbox name=cc value="ON" |CCCHECKED|>Send a CC to:</td><td class=list><input type=text name=email value="|EMAIL|"></td></tr>
+
+		<tr><td class=listtitle colspan=3 align=right>
+			<input type=submit name=create value="Create">
+		</td></tr>
+	</form>
+</table>
+
+|HTM_USER_BOTTOM|

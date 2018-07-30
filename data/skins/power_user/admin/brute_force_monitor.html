@@ -1,0 +1,144 @@
+|*if HAVE_SHOW_BLOCKED_IPS_SH="1"|
+|?BODY=onLoad="sizeTheDiv();"|
+|*endif|
+|?TREE=&raquo; <a class=tree href="/CMD_BRUTE_FORCE_MONITOR">Brute Force Monitor</a>|
+|?HELP_SECTION=`ADMIN_HELPER`|
+|HTM_HEADER|
+
+|HTM_TAB_ADMIN|
+
+
+|*if LOG_SCANNING!="ON"|
+<br>
+<b>Log Scanning is not currently turned on.</b>  Enable it from your <a href="CMD_ADMIN_SETTINGS">Admin Settings</a>
+<br><br>
+|*endif|
+
+
+<br>
+<b>Failed Logins</b> - Click IP address or User to filter results
+<br><br>
+
+<form name=tableform action='CMD_BRUTE_FORCE_MONITOR' method=POST>
+<input type=hidden name=action value="skiplist">
+
+|?HEIGHT=150px|
+|*if NUM_IPS>"4"|
+|?HEIGHT=250px|
+|*endif|
+<table cellpadding=0 cellspacing=0 style="border: 1px solid grey;">
+<tr><td>
+        <div style="overflow: auto; height: |HEIGHT|; width: 1060px;">
+        <table cellpadding=0 cellspacing=0>
+        <tr><td valign=top>
+        |IPLOGINFAILURES|
+        </td>
+        <td width=30%>&nbsp;</td>
+        <td valign=top>
+        |USERLOGINFAILURES|
+        </td></tr></table>
+        </div>
+</td></tr>
+
+<tr><td colspan=3 class=listtitle align=center>
+
+|*if HAVE_BLOCK_SH="1"|
+<input type='button' value='Block IPs' onclick="if (confirm('Are you sure you want to block these IPs?')){document.tableform.action.value = 'block_ips';document.tableform.submit();}">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>|</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|*endif|
+<input type=text name="skip_value" placeholder="Optional IP/Range/Domain" title="Optional IP/Range/Domain" size=24><a target=_blank class=listtitle href="http://www.directadmin.com/features.php?id=1252">?</a>
+<input type=submit value="Add to Skip List"> Comments:<input type=text name=comments size=32>
+</td></tr>
+</form>
+</table>
+|*if sort1dir|
+<a href='?sort1=-1'>Clear Search Filter</a>
+|*endif|
+
+
+<br>
+|LOGINFAILURES|
+
+<script language="Javascript">
+<!--
+function validate_seek()
+{
+	var val = document.getElementById('seek_value').value;
+	if (isNaN(val) || val > 0)
+	{
+		return false;
+	}
+	return true;
+}
+//-->
+</script>
+<form onsubmit="return validate_seek();">
+<input type=hidden name="sort1" value="-1">
+brute_log_entries.list is |BRUTE_LOG_SIZE|. &nbsp;&nbsp;
+Only read <input size=6 type=text placeholder="0 or negative number" title="" id="seek_value" name="seek_value" value="|*if seek_value||seek_value||*else|0|*endif|" onchange="if (!validate_seek()) { this.value=0; } else { location.href='CMD_BRUTE_FORCE_MONITOR?sort1=-1&seek_value='+this.value; }"> bytes from the end of the file (negative number). 0 for all.</form>
+<br><br>
+<hr>
+
+<br>
+<b>Skip List</b>
+|SKIPLIST|
+
+
+|*if HAVE_SHOW_BLOCKED_IPS_SH="1"|
+<br>
+<form name=tableform5 action='CMD_BRUTE_FORCE_MONITOR' method=POST>
+<input type=hidden name=action value="unblock">
+<b>Blockd IPs</b>
+<div id="blockedipsdiv" style="overflow: auto; height: 450px; width: 300px; border: 1px solid grey;">
+|BLOCKED_IPS|
+</div>
+|*endif|
+|*if HAVE_UNBLOCK_SH="1"|
+<table id="blockbuttontable" class=list style='width: 50%' cellpadding=3 cellspacing=1>
+<tr><td class=listtitle align='right' colspan='5'> <input type='submit' value='UnBlock' name=unblock></td ></tr>
+</table>
+</form>
+|*endif|
+|*if HAVE_SHOW_BLOCKED_IPS_SH="1"|
+<script type="text/javascript">
+<!--
+function sizeTheDiv()
+{
+	var tblwidth=document.getElementById('blockedipstable').offsetWidth;
+	if (tblwidth>0)
+	{
+		if (tblwidth < 300)
+		{
+			tblwidth = 300;
+			document.getElementById('blockedipstable').style.width=tblwidth;
+		}
+
+		document.getElementById('blockedipsdiv').style.width=tblwidth+19;
+		if (document.getElementById('blockbuttontable'))
+			document.getElementById('blockbuttontable').style.width=tblwidth+21;
+	}
+}
+sizeTheDiv();
+// -->
+</script>
+|*endif|
+<br>
+<hr>
+<br>
+|CLEAR_MESSAGES_TABLE|
+<br>
+<hr>
+<br>
+|*if IP_LIMIT="0"|
+IP limit is set to 0. Admins will not be notified for failed login attempts from an IP.
+|*else|
+Admins will be notified when an IP makes |IP_LIMIT| failed attempts.
+|*endif|<br>
+
+|*if USER_LIMIT="0"|
+User limit is set to 0. Admins will not be notified for failed attempts on a specific account.
+|*else|
+Admins will be notified when |USER_LIMIT| failed attempts are made on a specific account.
+|*endif|<br>
+
+|HTM_FOOTER|

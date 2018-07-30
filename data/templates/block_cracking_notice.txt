@@ -1,0 +1,19 @@
+|?SUBJECT=Warning: `COUNT` non-existant E-Mails have just been sent by `EMAIL`|
+The address |EMAIL| has just finished sending |COUNT| non-existant emails within a |PERIOD| period, and has been blocked.
+There could be a spammer, the account could be compromised, or just sending more emails than usual.
+
+|*if EMAIL=USERNAME|To unblock this account, the password must be changed by the Reseller or Admin.
+Changing the password by the |DEAMONNAME| User will not work, as the password is likely compromised.
+
+|*else|To unblock this account, the password must be changed by a |DEAMONNAME| User.
+Changing the password through the E-Mail self-serve options will not work, as the password is likely compromised.
+
+|*endif||*if AUTO_UNBLOCK="1"|The account will also automatically be unblocked in |AUTO_UNBLOCK_HOURS| Hours.
+We still highly encourage that the password for |EMAIL| be changed.
+
+|*endif|The last IP to send an email was |HOST|.
+
+This warning was triggered by the BlockCracking monitoring tool in exim.
+The E-Mail account is managed under the |USERNAME| User account.
+
+|MSG_FOOTER|

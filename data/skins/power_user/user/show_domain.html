@@ -1,0 +1,187 @@
+|?TREE=&raquo; <a class=tree href="/CMD_SHOW_DOMAIN?domain=`domain`">`domain`</a>|
+|?HELP_SECTION=`USER_HELPER`|
+|HTM_USER_TOP|
+
+<table class=list cellspacing=1 cellpadding=5>
+<tr>
+	<td class=listtitle colspan=2>
+		<b>|DOMAIN|</b>
+	</td>
+</tr>
+<tr>
+	<td class=list>
+		<a href="HTM_EMAIL?DOMAIN=|DOMAIN|">Email Menu</a>
+	</td>
+	<td class=list>
+		<a href="CMD_DB?DOMAIN=|DOMAIN|">MySQL Menu</a>
+	</td>
+</tr>
+<tr>
+	<td class=list>
+		<a href="CMD_FTP?DOMAIN=|DOMAIN|">Ftp Menu</a>
+	</td>
+	<td class=list>
+|*if FRONTPAGE_ON="yes"|
+		<a href="CMD_FRONTPAGE?DOMAIN=|DOMAIN|">Setup Frontpage Extensions</a>
+|*else|
+		&nbsp;
+|*endif|
+	</td>
+</tr>
+<tr>
+	<td class=list>
+		<a href="CMD_WEBALIZER/|DOMAIN|/index.html">Webalizer Stats</a>
+	</td>
+	<td class=list>
+		<a href="CMD_USER_STATS?domain=|DOMAIN|">Account Info/Stats</a>
+	</td>
+</tr>
+<tr>
+	<td class=list>
+		<a href="HTM_PASSWD">Change your Password</a>
+	</td>
+	<td class=list>
+		<a href="/CMD_SITE_BACKUP?domain=|DOMAIN|">Site Backup</a>
+	</td>
+</tr>
+
+<tr>
+	<td class=listtitle colspan=2>
+		Advanced Options for |DOMAIN|
+	</td>
+</tr>
+<tr>
+	<td class=list>
+		<a href="CMD_DNS_CONTROL?domain=|DOMAIN|">Modify DNS Record</a>
+	</td>
+	<td class=list>
+		<a href="CMD_SYSTEM_INFO">Show System Information</a>
+	</td>
+</tr>
+<tr>
+	<td class=list>
+		<a href="CMD_PROTECTED_DIRECTORIES?domain=|DOMAIN|">Password Protect Directories</a>
+	</td>
+	<td class=list>
+		<a href="CMD_SSL?DOMAIN=|DOMAIN|">SSL Menu</a>
+	</td>
+</tr>
+<tr>
+	<td class=list>
+		<a href="CMD_MIME_TYPES?DOMAIN=|DOMAIN|">Mime Types</a>
+	</td>
+	<td class=list>
+		<a href="CMD_HANDLERS?DOMAIN=|DOMAIN|">Apache Handlers</a>
+	</td>
+</td>
+<tr>
+	<td class=list>
+		<a href="CMD_CRON_JOBS">Cron Jobs</a>
+	</td>
+	<td class=list>
+		<a href="HTM_ERROR_PAGES?DOMAIN=|DOMAIN|">Error Pages</a>
+	</td>
+</tr>
+<tr>
+	<td class=list>
+		<a href="CMD_REDIRECT?DOMAIN=|DOMAIN|">Site Redirections</a>
+	</td>
+	<td class=list>
+		<a href="CMD_DOMAIN_POINTER?DOMAIN=|DOMAIN|">Domain Pointers</a>
+	</td>
+</tr>
+<tr>
+	<td class=list>
+		<a href="CMD_PERL_MODULES">Show Installed Perl Modules</a>
+	</td>
+	<td class=list>
+|*if ALLOWED_CMD_DOMAIN!="no"|
+		<a href="CMD_ADDITIONAL_DOMAINS?domain=|DOMAIN|">Domain Administration</a>
+|*endif|
+	</td>
+</tr>
+
+|*if LOGIN_KEYS_ENABLED="0"|
+|?USERLOGINKEYS=OFF|
+|*endif|
+|*if USERLOGINKEYS="ON"|
+<tr>
+	<td class=list>
+			<a href="/CMD_LOGIN_KEYS">Login Keys</a>
+	</td>
+	<td class=list>
+		&nbsp;
+	</td>
+</tr>
+|*endif|
+
+|$/usr/local/bin/php
+<?php
+$data = <<<END
+|PLUGIN_0_TXT|
+END;
+if (strlen($data) > 1)
+{
+echo <<<END
+	<tr>
+		<td class=list>
+			$data
+		</td>
+		<td class=list>
+			|PLUGIN_1_TXT|
+		</td>
+	</tr>
+END;
+}
+
+$data = <<<END
+|PLUGIN_2_TXT|
+END;
+if (strlen($data) > 1)
+{
+echo <<<END
+	<tr>
+		<td class=list>
+			$data
+		</td>
+		<td class=list>
+			|PLUGIN_3_TXT|
+		</td>
+	</tr>
+	<tr>
+		<td class=list>
+			|PLUGIN_4_TXT|
+		</td>
+		<td class=list>
+			|PLUGIN_5_TXT|
+		</td>
+	</tr>
+	<tr>
+		<td class=list>
+			|PLUGIN_6_TXT|
+		</td>
+		<td class=list>
+			|PLUGIN_7_TXT|
+		</td>
+	</tr>
+END;
+}
+
+?>
+DONE|
+
+</table>
+|SUBDOMAINS|
+
+<table class=list cellspacing=1 cellpadding=3>
+<form name=info action="CMD_SUBDOMAIN" method="POST">
+	<input type=hidden name=action value="create">
+	<input type=hidden name=domain value="|DOMAIN|">
+	<tr><td class=list colspan=2>Add Subdomain: <input type=text name=subdomain size=8>.|DOMAIN|</td></tr>
+	<tr><td class=listtitle align=right colspan=2><input type=submit value="Create"></td></tr>
+</form>
+</table>
+
+<br>
+
+|HTM_USER_BOTTOM|

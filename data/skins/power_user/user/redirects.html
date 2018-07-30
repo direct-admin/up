@@ -1,0 +1,23 @@
+|?TREE=&raquo; <a class=tree href="/CMD_SHOW_DOMAIN?domain=`DOMAIN`">`DOMAIN`</a> &raquo; <a class=tree href="/CMD_REDIRECT?DOMAIN=`DOMAIN`">Site Redirects</a>|
+|?HELP_SECTION=`USER_HELPER`/misc.html#redirect|
+|HTM_USER_TOP|
+
+<table class=list cellpadding=3 cellspacing=1>
+<form name=info action='/CMD_REDIRECT' method='POST'>
+<input type=hidden name=domain value="|DOMAIN|">
+<input type=hidden name=action value="add">
+<tr><td class=listtitle colspan=2>Add New Redirect</td></tr>
+<tr><td class=list>Local URL Path</td><td class=list>|DOMAIN|<input type=text name=from value="/"> eg: <b>/redirect</b> &nbsp;&nbsp;&nbsp;or: <b>/</b></td></tr>
+<tr><td class=list>Redirect Type</td><td class=list><select name=type>
+<option value="301">301 - Permanent</option>
+<option value="302" selected>302 - Temporary</option>
+<option value="303">303 - Replaced</option>
+</select></td></tr>
+<tr><td class=list>Destination URL</td><td class=list><input type=text name=to value="http://"> eg: http://www.redirected.com</td></tr>
+<tr><td class=listtitle align=right colspan=2><input type=submit value="Save"></td></tr>
+</form>
+</table>
+
+|REDIRECTS|
+
+|HTM_USER_BOTTOM|

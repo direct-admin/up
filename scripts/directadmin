@@ -1,0 +1,76 @@
+#!/bin/sh
+
+# directadmin daemon		Start/Stop/Status/Restart
+
+# chkconfig: 2345 80 20
+# description: Allows users to modify their websites. \
+#              They modify thier: email, subdomains, \
+#              databases, dns record, etc...
+# processname: directadmin
+# config: /usr/local/directadmin/conf/paneld.conf
+# pidfile: /var/run/directadmin.pid
+
+### BEGIN INIT INFO
+# Provides:          directadmin
+# Required-Start:    $local_fs $network
+# Required-Stop:     $local_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: directadmin
+# Description:       directadmin daemon
+### END INIT INFO
+
+# Source function library
+. /etc/rc.d/init.d/functions
+
+PROGBIN="/usr/local/directadmin/directadmin d"
+PROGLOCK=/var/lock/subsys/directadmin
+PROGNAME=directadmin
+
+umask 0022
+
+#check the command line for actions
+
+start() {
+	echo -n "Starting DirectAdmin: "
+	daemon $PROGBIN
+	echo
+	touch $PROGLOCK
+}
+
+stop() {
+	echo -n "Stopping DirectAdmin: "
+	killproc $PROGNAME
+	echo
+	rm -f $PROGLOCK
+}
+
+reload() {
+        echo -n "Reloading DirectAdmin config file: "
+        killproc $PROGNAME -HUP
+        echo
+}
+
+case "$1" in
+	start)
+		start
+		;;
+	stop)
+		stop
+		;;
+	status)
+		status $PROGNAME
+		;;
+	restart)
+		stop
+		start
+		;;
+	reload)
+		reload
+		;;
+	*)
+		echo "Usage: $1 {start|stop|status|reload|restart}"
+		exit 1
+esac
+
+exit 0

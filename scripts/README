@@ -1,0 +1,9 @@
+DirectAdmin Scripts
+
+To install DirectAdmin run ./install.sh
+
+this will first do some checks to make sure that things are installed (named etc)
+
+then it will ask some question and save the data to setup.txt
+
+If you encounter errors and need to change some of the setup data, simply delete setup.txt and re-run setup.sh

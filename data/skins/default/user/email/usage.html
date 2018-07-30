@@ -1,0 +1,38 @@
+|?TREE=&raquo; <a class=tree href="/CMD_SHOW_DOMAIN?domain=`DOMAIN`">`DOMAIN`</a> &raquo; <a class=tree href="/HTM_EMAIL?DOMAIN=`DOMAIN`">Email</a> &raquo; <a class=tree href="/CMD_EMAIL_USAGE?DOMAIN=`DOMAIN`">Email Usage</a>|
+|?HELP_SECTION=`USER_HELPER`/email.html#email_usage|
+|HTM_USER_TOP|
+
+<b>E-Mail Usage</b>
+<br><br>
+
+|*if BLOCK_CRACKING_PATHS="yes"|
+|BLOCK_CRACKING_PATHS_TABLE|
+
+<br><br>
+|*endif|
+
+Show usage from:
+<form name=whichfile action=? method=GET>
+<input type=hidden name='domain' value='|DOMAIN|'>
+<input type=radio name=which value="today" onClick="document.whichfile.submit();" |TODAY_CHECKED|> Today
+&nbsp;&nbsp;&nbsp;&nbsp;
+<input type=radio name=which value="both" onClick="document.whichfile.submit();" |BOTH_CHECKED|> This month
+&nbsp;&nbsp;&nbsp;&nbsp;
+<input type=radio name=which value="past" onClick="document.whichfile.submit();" |PAST_CHECKED|> This month, excluding today
+</form>
+
+|EMAIL_STATS|
+
+<b>Note</b>: Each delivery attempt is counted, including retries.
+
+|EMAIL_USAGE|
+
+<br>
+<b>Sender</b>: The 'From' value set in the email header. This value should not be considered accurate as a sender can specify any value they wish.<br>
+<b>Authentication</b>: If smtp authentication is used, this will show the login name used. Scripts will show the owner of the script. Can be considered accurate.<br>
+<b>Sender Host</b>: If this is set, it will show the IP that connect to the server. If no IP is set, then the email was sent via a local script.<br>
+<b>Path</b>: If the email was generated from a script, the path value will show the working directory the script was in. An email in the spool will have a path value of "retry" for each attempt.<br>
+
+|SENDING_PHP_SCRIPTS|
+
+|HTM_USER_BOTTOM|

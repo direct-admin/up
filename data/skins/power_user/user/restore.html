@@ -1,0 +1,39 @@
+|?TREE=&raquo; <a class=tree href="/CMD_SHOW_DOMAIN?domain=`domain`">`domain`</a> &raquo; <a class=tree href="/CMD_SITE_BACKUP?domain=`domain`">Site Backup</a> &raquo; <a class=tree href="/CMD_SITE_RESTORE?domain=`domain`">Site Restore</a>|
+|?HELP_SECTION=backup|
+|HTM_USER_TOP|
+
+Restore From Backup
+
+<table class=list cellpadding=3 cellspacing=1>
+<form action="/CMD_SITE_BACKUP" method="POST">
+<input type=hidden name=domain value="|domain|">
+<input type=hidden name=action value="restore">
+<tr><td class=listtitle colspan=2>Select Items to Restore from <select><option>Jan-31-2003-1.tar.gz</option></select></td></tr>
+<tr><td class=list colspan=2><b>Website Data</b></td></tr>
+<tr><td class=list>Domains Directory: Backs up all user files for all domains</td>		<td class=list><input type=checkbox name=select0 value="domain" checked></td></tr>
+<tr><td class=list>Subdomain Lists: Backs up the list of subdomains for each domain</td>	<td class=list><input type=checkbox name=select1 value="subdomain" checked></td></tr>
+<tr><td class=list colspan=2><b>Email</b></td></tr>
+<tr><td class=list>POP Accounts for all domains</td>									<td class=list><input type=checkbox name=select2 value="email" checked></td></tr>
+<tr><td class=list>Forwarders: Includes all forwarding addresses.</td>					<td class=list><input type=checkbox name=select3 value="forwarder" checked></td></tr>
+<tr><td class=list>Autoresponders: Includes all autoresponders and messages.</td>		<td class=list><input type=checkbox name=select4 value="autoresponder" checked></td></tr>
+<tr><td class=list>Vacation Messages: Includes all vacationmessages and times.</td>		<td class=list><input type=checkbox name=select5 value="vacation" checked></td></tr>
+<tr><td class=list>Email Settings: Includes the filters and the catchall address.</td>	<td class=list><input type=checkbox name=select6 value="emailsettings" checked></td></tr>
+<tr><td class=list colspan=2><b>Ftp</b></td></tr>
+<tr><td class=list>Ftp Accounts</td>													<td class=list><input type=checkbox name=select7 value="ftp" checked></td></tr>
+<tr><td class=list>Ftp Settings</td>													<td class=list><input type=checkbox name=select8 value="ftpsettings" checked></td></tr>
+<tr><td class=listtitle colspan=2 align=right><input type=submit value="Restore Backup"></td></tr>
+</form>
+</table>
+
+<table>
+<tr><td class=list colspan=2><b>Databases</b></td></tr>
+<tr><td class=list>Databases: Backs up all user databases</td>							<td class=list><input type=checkbox name=select9 value="database" checked></td></tr>
+<tr><td class=list colspan=2>db name <input type=text name=db> user name <input type=text name=user> password <input type=password name=passwd></td></tr>
+</table>
+
+<br>
+<center>
+<b>|RESULT|</b><br>
+<br>
+
+|HTM_USER_BOTTOM|

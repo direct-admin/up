@@ -1,0 +1,10 @@
+|*if REASON="inode"||?SUBJECT=User `USERNAME` has used up `INODE`% of their inode limit||*else||?SUBJECT=User `USERNAME` has used up `BANDWIDTH`% of their bandwidth and `QUOTA`% of their allocated disk space||*endif|This is an automated message notifying User |USERNAME| has used the following resources:
+|*if BANDWIDTHLIMITMEG>"0"|Bandwidth: |BANDWIDTH|%|*endif|
+|*if QUOTALIMITMEG>"0"|Disk Quota: |QUOTA|%|*endif|
+|*if INODELIMIT>"0"|File Inodes: |INODE|%|*endif|
+
+|*if BANDWIDTHLIMITMEG>"0"|It is estimated, at the current rate of use, that the account bandwidth will be used up in |TIMELEFT| days, at which time the account may be suspended for the remainder of the month.|*endif|
+
+The User should contact Support if this is an issue.
+
+|MSG_FOOTER|

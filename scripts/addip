@@ -1,0 +1,106 @@
+#!/bin/sh
+
+#find the eth0:# and add the ip to the system
+
+addIPv6()
+{
+	MASK=/64
+	MCOUNT=`echo $2 | grep -F -c /`
+	if [ "$MCOUNT" -gt 0 ]; then
+		MASK=$2
+	fi
+
+	ip addr add ${1}${MASK} dev $ETH_DEV preferred_lft 0 >/dev/null 2>&1
+	if [ "$?" -ne 0 ]; then
+		/sbin/ifconfig $ETH_DEV inet6 add ${1}${MASK}
+	fi
+	
+	exit 0;
+}
+
+getBroadcast() {
+
+        IP1=`echo $1 | cut -d. -f1`;
+        IP2=`echo $1 | cut -d. -f2`;
+        IP3=`echo $1 | cut -d. -f3`;
+        IP4=`echo $1 | cut -d. -f4`;
+
+        NM1=`echo $2 | cut -d. -f1`;
+        NM2=`echo $2 | cut -d. -f2`;
+        NM3=`echo $2 | cut -d. -f3`;
+        NM4=`echo $2 | cut -d. -f4`;
+
+        BC1=$((($IP1 & $NM1) | (255 & ~$NM1)));
+        BC2=$((($IP2 & $NM2) | (255 & ~$NM2)));
+        BC3=$((($IP3 & $NM3) | (255 & ~$NM3)));
+        BC4=$((($IP4 & $NM4) | (255 & ~$NM4)));
+
+        BROADCAST="$BC1.$BC2.$BC3.$BC4";
+}
+
+ETH_DEV=eth0
+if [ $# -lt 1 ] # we need the ip
+then
+	echo "Usage: $0 <ip> (<netmask> (<eth dev> (<broadcast>)))";
+	echo "example: $0 1.2.3.4 255.255.255.0 eth0";
+	exit 1;
+fi
+
+IP_FILE=/usr/local/directadmin/data/admin/ips/$1
+if [ -s ${IP_FILE} ]; then
+	C=`grep -c 'add_to_device=no' ${IP_FILE}`
+	if [ "${C}" -gt 0 ]; then
+		echo "IP $1 has add_to_device=no set. Skipping"
+		exit 0;
+	fi
+fi
+
+#check to make sure it isn't already running
+NUMIP=`/sbin/ifconfig | grep -F -c "$1 "`;
+if [ $NUMIP -gt "0" ]
+then
+	echo "IP $1 already exists on eth0";
+	exit 1;
+fi
+
+if [ $# -gt "2" ]
+then
+        #echo "have device: $3";
+        ETH_DEV=$3;
+fi
+
+IPV6COUNT=`echo $1 | grep -F -c :`
+if [ "$IPV6COUNT" -gt 0 ]; then
+	addIPv6 $1 $2
+fi
+
+#DEVNUM=`/sbin/ifconfig | grep -F -c $ETH_DEV:`;
+NETMASK=255.255.255.0
+
+if [ $# -gt "1" ]
+then
+	#echo "have netmask: $2";
+	NETMASK=$2;
+fi
+
+
+if [ $# -gt "3" ]
+then
+        BROADCAST=$4;
+else
+	getBroadcast $1 $2
+fi
+
+DEVNUM=0
+while [ `/sbin/ifconfig $ETH_DEV:$DEVNUM | grep -F -c inet` -gt "0" ]
+do
+{
+	DEVNUM=$(($DEVNUM+1));
+}
+done;
+
+/sbin/ifconfig $ETH_DEV:$DEVNUM $1 netmask $NETMASK broadcast $BROADCAST
+/sbin/route add -host $1 dev $ETH_DEV:$DEVNUM
+
+exit 0;
+

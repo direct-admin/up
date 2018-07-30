@@ -1,0 +1,47 @@
+If you wish to customize these files, first copy them
+into the custom directory and use them from there.
+
+If you try to use them from this direcotry, the next time 
+DirectAdmin updates, your changes will be overwritten.
+Your changes will only be safe if they are in the custom
+directory.
+
+DirectAdmin will first check the custom directory for
+a template. If it can't find it, it will use the ones
+in this directory.
+
+The following templates can be used in the custom dir:
+
+named.db
+zone.conf
+outlook_setup.reg
+virtual_host.conf
+virtual_host_secure.conf
+virtual_host_secure_sub.conf
+virtual_host_sub.conf
+u_welcome.txt
+r_welcome.txt
+a_welcome.txt
+email_pass_change/custom/index.html
+reseller_limit.txt
+user_limit.txt
+message_tech.txt
+message_user.txt
+dns_a.conf
+dns_mx.conf
+dns_cname.conf
+dns_ns.conf
+
+
+
+If you want to rewrite all httpd.conf files with the new templates, run:
+echo "action=rewrite&value=httpd" >> /usr/local/directadmin/data/task.queue
+
+
+**IMPORTANT NOTE**
+Regarding the template system, and all config files:
+You must have a newline at the end of the files.
+Failure to do so will result in unexpected behavior.
+Go to the end, and press enter.
+In DA a line is defined by a trailing newline character.
+

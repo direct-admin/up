@@ -1,0 +1,53 @@
+#!/bin/bash
+
+#remove the active ip from eth0:#
+
+ETH_DEV=eth0
+DACONF=/usr/local/directadmin/conf/directadmin.conf
+if [ `cat $DACONF | grep -c ethernet_dev` -gt "0" ]
+then
+        ETH_DEV=`cat $DACONF | grep ethernet_dev | cut -d= -f2 | cut -d: -f1`
+fi
+
+# we need the ip to delete
+if [ $# -ne "1" ] && [ $# -ne "2" ]; then
+        echo "Usage: $0 <ip> (<condensed_ipv6>)";
+        exit 1;
+fi
+
+IP=$1
+IPv6=0
+if [ $# -eq "2" ] && [ "$2" != "" ]; then
+	IP=$2
+	/sbin/ifconfig $ETH_DEV del $IP/64
+
+	IPv6=1
+fi
+
+#for each eth0:#, if ifconfig eth0:# has $1 (the ip) delete eth0:#
+for i in `/sbin/ifconfig | grep $ETH_DEV: | cut -d\  -f1 | cut -d: -f1,2`; do
+{
+	NUMIP=`/sbin/ifconfig $i | grep -c "${IP} "`;
+	
+	if [ $NUMIP -gt "0" ];
+	then
+	{
+		#we found the interface with the ip
+
+		COLCOUNT=`echo $i | grep -c :`
+		if [ "${COLCOUNT}" -gt 0 ] && [ -e /etc/debian_version ] && [ "${IPv6}" -eq 0 ]; then
+			/sbin/ifconfig $i down
+		else
+			/sbin/ifconfig $i del $IP	#remove from the interface
+		fi
+		
+		#it appears as though the ip is automatically removed from `route`
+
+		exit 0
+	}
+	fi
+};
+done;
+
+exit 0
+#can't find it, it must be gone

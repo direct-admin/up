@@ -1,0 +1,57 @@
+|?TREE=&raquo; <a class=tree href="/CMD_SHOW_DOMAIN?domain=`domain`">`domain`</a> &raquo; <a class=tree href="/CMD_SITE_BACKUP?domain=`domain`">Site Backup</a>|
+|?HELP_SECTION=`USER_HELPER`/backup.html|
+|HTM_USER_TOP|
+
+Backup All Domains
+
+<table class=list cellpadding=3 cellspacing=1>
+<form name=tableform1 action="/CMD_SITE_BACKUP" method="POST">
+<input type=hidden name=domain value="|domain|">
+<input type=hidden name=action value="backup">
+<input type=hidden name="form_version" value="3">
+<tr><td class=listtitle colspan=2>Select Items to include in Backup</td></tr>
+
+<tr><td class=list colspan=2><b>Website Data</b></td></tr>
+<tr><td class=list>Domains Directory: Backs up all user files for all domains</td>		<td class=list><input type=checkbox name=select0 value="domain" checked></td></tr>
+<tr><td class=list>Subdomain Lists: Backs up the list of subdomains for each domain</td>	<td class=list><input type=checkbox name=select1 value="subdomain" checked></td></tr>
+
+<tr><td class=list colspan=2><b>E-mail</b></td></tr>
+<tr><td class=list>E-Mail Accounts List for all domains (names and passwords)</td>							<td class=list><input type=checkbox name=select2 value="email" checked onClick='document.tableform1.select12.checked = this.checked;'></td></tr>
+<tr><td class=list>E-Mail Data: Includes the messages from the Inbox, IMAP Folders, and webmail data.</td>	<td class=list><input type=checkbox name=select12 value="email_data" checked onClick='if (this.checked == true) { document.tableform1.select2.checked = true; }'></td></tr>
+<tr><td class=list>E-mail Settings: Includes the filters and the catchall address.</td>	<td class=list><input type=checkbox name=select7 value="emailsettings" checked></td></tr>
+<tr><td class=list>Autoresponders: Includes all autoresponders and messages.</td>		<td class=list><input type=checkbox name=select4 value="autoresponder" checked></td></tr>
+<tr><td class=list>Vacation Messages: Includes all vacation messages and times.</td>	<td class=list><input type=checkbox name=select5 value="vacation" checked></td></tr>
+<tr><td class=list>Mailing Lists: Includes the list, digest-list and archives</td>		<td class=list><input type=checkbox name=select6 value="list" checked></td></tr>
+<tr><td class=list>Forwarders: Includes all forwarding addresses.</td>					<td class=list><input type=checkbox name=select3 value="forwarder" checked></td></tr>
+
+<tr><td class=list colspan=2><b>Ftp</b></td></tr>
+<tr><td class=list>Ftp Accounts</td>													<td class=list><input type=checkbox name=select8 value="ftp" checked></td></tr>
+<tr><td class=list>Ftp Settings</td>													<td class=list><input type=checkbox name=select9 value="ftpsettings" checked></td></tr>
+
+<tr><td class=list colspan=2><b>Databases</b></td></tr>
+<tr><td class=list>Databases: Backs up all user databases</td>							<td class=list><input type=checkbox name=select10 value="database" checked onClick='document.tableform1.select11.checked = this.checked;'></td></tr>
+<tr><td class=list>Database Data: If 'Databases' is selected, include the actual DB data</td> <td class=list><input type=checkbox name="select11" value="database_data" checked onClick='if (this.checked == true) { document.tableform1.select10.checked = true; }'></td></tr>
+
+
+<tr><td class=listtitle colspan=2 align=right><input type=submit value="Create Backup"></td></tr>
+</form>
+</table>
+
+<br>
+<center>
+<b>|RESULT|</b><br>
+<br>
+<a href="/CMD_FILE_MANAGER/backups">Click here for a list of your current backups</a><br>
+<br>
+<table class=list cellpadding=3 cellspacing=1>
+<form action="/CMD_SITE_BACKUP" method="POST">
+<input type=hidden name=domain value="|domain|">
+<input type=hidden name=action value="view">
+<tr><td class=listtitle>Select a File to Restore</td></tr>
+<tr><td class=list align=center>|FILES|</td></tr>
+<tr><td class=listtitle align=right><input type=submit value="Select Restore Options"></td></tr>
+</form>
+
+</table>
+
+|HTM_USER_BOTTOM|

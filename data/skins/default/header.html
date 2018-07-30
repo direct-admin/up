@@ -1,0 +1,23 @@
+<HTML>
+<HEAD>
+	<TITLE>|HOSTNAME| - |DEAMONNAME| v|VERSION|</TITLE>
+	<script language="JavaScript">
+	<!--
+	//timer for auto-logout
+		function log_me_out()
+		{
+			location.href = '/CMD_LOGOUT';
+		}
+		var logout_timeout = setTimeout('log_me_out();', |SESSION_MINUTES|*60*1000);
+	// -->
+	</script>
+	<style type="text/css">
+	|CSS_STYLE|
+	</style>
+</HEAD>
+
+<BODY background="/IMG_BG" leftMargin=0 rightMargin=0 topMargin=3 bottomMargin=0>
+
+<TABLE width=100% cellSpacing=0 cellPadding=0 bgColor=#334263 background=/IMG_BG>
+	<TR>
+		<TD align=left>

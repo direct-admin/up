@@ -1,0 +1,35 @@
+#!/bin/sh
+
+FTPGET=/usr/bin/ncftpget
+TOUCH=/bin/touch
+PORT=${ftp_port}
+
+if [ ! -e $TOUCH ] && [ -e /usr/bin/touch ]; then
+        TOUCH=/usr/bin/touch
+fi
+
+if [ ! -e $FTPGET ]; then
+        echo "";
+        echo "*** Backup not downloaded ***";
+        echo "Please install $FTPGET by running:";
+        echo "";
+        echo "cd /usr/local/directadmin/scripts";
+        echo "./ncftp.sh";
+        echo "";
+        exit 10;
+fi
+
+CFG=${ftp_local_file}.cfg
+/bin/rm -f $CFG
+$TOUCH $CFG
+/bin/chmod 600 $CFG
+/bin/echo "host $ftp_ip" >> $CFG
+/bin/echo "user $ftp_username" >> $CFG
+/bin/echo "pass $ftp_password" >> $CFG
+
+$FTPGET -C -f $CFG -V -t 25 -P $PORT "$ftp_ip" "$ftp_path/$ftp_remote_file" "$ftp_local_file" 2>&1
+RET=$?
+
+/bin/rm -f $CFG
+
+exit $RET

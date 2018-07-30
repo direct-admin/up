@@ -1,0 +1,15 @@
+# DirectAdmin control panel
+# To reload systemd daemon after changes to this file:
+# systemctl --system daemon-reload
+[Unit]
+Description=Start the additional IPs
+After=syslog.target network.target
+Requires=network.target
+Documentation=http://www.directadmin.com
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/directadmin/scripts/startips start
+
+[Install]
+WantedBy=multi-user.target

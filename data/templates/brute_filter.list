@@ -1,0 +1,27 @@
+dovecot1=attempts_after=(auth failed,%20&attempts_until=%20attempts%20in%20&binary=dovecot&ip_after=rip=&ip_until=,&text=(auth failed&user_after=user%3D<&user_until=>,%20
+dovecot2=attempts_after=(auth failed,%20&attempts_until=%20attempts)&binary=dovecot&ip_after=rip=&ip_until=,&text=(auth failed&user_after=user%3D<&user_until=>,%20
+exim1=ip_after=]) [&ip_until=]&text=535 Incorrect authentication data&user_after=(set_id%3D&user_until=)
+exim2=ip_after=[&ip_until=]&text=535 Incorrect authentication data&user_after=(set_id%3D&user_until=)
+exim3=ip_after=]) [&ip_until=]&text=535 Incorrect authentication data&user_after=(set_id%3D&user_until=)
+exim4=ip_after=[&ip_until=]&text=535 Incorrect authentication data&user_after=(set_id%3D&user_until=)
+proftpd1=binary=proftpd&ip_after=[&ip_until=]&text=no such user found from&user_after=USER &user_until=:%20
+proftpd2=binary=proftpd&ip_after=[&ip_until=]&text=(Login failed):%20Incorrect password&user_after=USER &user_until=%20
+proftpd3=attempts_after=attempts%20(&attempts_until=)%20exceeded&binary=proftpd&ip_after=[&ip_until=]&text=Maximum login attempts
+pure-ftpd1=binary=pure-ftpd&text=[WARNING] Authentication failed for user&ip_after=(?@&ip_until=)&user_after=user%20[&user_until=]
+sshd1=binary=sshd&ip_after=from%20&ip_until=%20&text=authentication error for illegal user&user_after=user%20&user_until=%20
+sshd2=binary=sshd&ip_after=from%20&ip_until=%20&text=authentication error for&user_after=for%20&user_until=%20
+sshd3=binary=sshd&ip_after=from%20&ip_until=%20&text=Failed keyboard-interactive/pam for&user_after=for%20&user_until=%20
+sshd4=binary=sshd&ip_after=from%20&ip_until=%20&text=Failed password for invalid user&user_after=user%20&user_until=%20
+sshd5=binary=sshd&ip_after=from%20&ip_until=%20&text=Failed password for&user_after=for%20&user_until=%20
+roundcube1=ip_after= from &ip_until=(X-Forwarded-For:&text=IMAP Error: Login failed for&user_after=IMAP Error: Login failed for &user_until=%20from%20
+roundcube2=ip_after= from &ip_until=. AUTHENTICATE PLAIN&text=IMAP Error: Login failed for&user_after=IMAP Error: Login failed for &user_until=%20from%20
+squirrelmail1=ip_after=) from &ip_until=: Unknown user or&text=: Unknown user or password incorrect.&user_after=[LOGIN_ERROR] &user_until=%20(
+phpmyadmin1=ip_after=ip='&ip_until='&text=status='mysql-denied'&user_after=user='&user_until='
+phpmyadmin2=ip_after=ip='&ip_until='&text=status='not authenticated'&user_after=user='&user_until='
+phpmyadmin3=ip_after=%20from%20'&ip_until='&text=phpmyadmin:%20user%20denied:%20&user_after=user%20denied:%20'&user_until='%20(mysql-denied)
+phpmyadmin4=ip_after=%20from%20&ip_until=NULL&text=phpmyadmin:%20user%20denied:%20&user_after=user%20denied:%20&user_until=%20(mysql-denied)
+wordpress1=ip_after=&ip_until= -&text=] "POST /&text2=/wp-login.php&text3=" 200%20
+wordpress2=ip_after=&ip_until= -&text=] "POST /&text2=/xmlrpc.php&text3=" 200%20
+wordpress3=ip_after=&ip_until= -&text=] "POST /&text2=/wp-login.php&text3=" 302%20&count_multiplier=4
+wordpress4=ip_after=&ip_until= -&text=] "POST /&text2=/xmlrpc.php&text3=" 302%20
+mysql1=text=[Warning] Access denied for user '&ip_after=@'&ip_until='&user_after=user '&user_until='

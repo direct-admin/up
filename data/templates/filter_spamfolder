@@ -1,0 +1,10 @@
+if
+    $h_X-Spam-Status: contains "Yes,"
+then
+|*if DOVECOT="yes"|
+    save |HOME|/Maildir/.|INBOX_SPAM|/new/ 660
+|*else|
+    save |HOME|/.spamassassin/spam 660
+|*endif|
+    finish
+endif

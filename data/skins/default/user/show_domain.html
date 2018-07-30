@@ -1,0 +1,90 @@
+|?TREE=&raquo; <a class=tree href="/CMD_SHOW_DOMAIN?domain=`domain`">`domain`</a>|
+|?HELP_SECTION=`USER_HELPER`|
+|HTM_USER_TOP|
+			<TABLE height=1 cellSpacing=5 cellPadding=2 width=750 border=0>
+				<TR>
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='HTM_EMAIL?DOMAIN=|DOMAIN|'">
+						<a class=button href="HTM_EMAIL?DOMAIN=|DOMAIN|">
+							<img border="0" src="IMG_EMAIL" width="86" height="65"><br>
+							E-mail Menu
+						</a>
+					</TD>
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_FTP?DOMAIN=|DOMAIN|'">
+						<a class=button href="CMD_FTP?DOMAIN=|DOMAIN|">
+							<img border="0" src="IMG_FTP" width="72" height="65"><br>
+							FTP Menu
+						</a>
+					</TD>
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_DNS_CONTROL?domain=|DOMAIN|'">
+						<a class=button href="CMD_DNS_CONTROL?domain=|DOMAIN|">
+							<img border="0" src="IMG_DNS" width="61" height="65"><br>
+							DNS Menu
+						</a>
+					</TD>
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_USER_STATS?domain=|DOMAIN|'">
+						<a class=button href="CMD_USER_STATS?domain=|DOMAIN|">
+							<img border="0" src="IMG_STATS" width="64" height="65"><br>
+							Statistics / Logs
+						</a>
+					</TD>
+				</TR>
+				<TR>
+|*if FRONTPAGE_ON="yes"|
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_FRONTPAGE?DOMAIN=|DOMAIN|'">
+						<a class=button href="CMD_FRONTPAGE?DOMAIN=|DOMAIN|">
+							<img border="0" src="IMG_FRONTPAGE" width="65" height="65"><br>
+							FrontPage Extensions
+						</a>
+					</TD>
+|*else|
+					<TD vAlign=middle height=100 align="center">
+						&nbsp;
+					</TD>
+|*endif|
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_SUBDOMAIN?domain=|DOMAIN|'">
+						<a class=button href="CMD_SUBDOMAIN?domain=|DOMAIN|">
+							<img border="0" src="IMG_SUBDOMAINS" width="71" height="65"><br>
+							Subdomains
+						</a>
+					</TD>
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_FILE_MANAGER'">
+						<a class=button href="CMD_FILE_MANAGER">
+							<img border="0" src="IMG_FILEMANAGER" width="65" height="65"><br>
+							File Manager
+						</a>
+					</TD>
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_DB?DOMAIN=|DOMAIN|'">
+						<a class=button href="CMD_DB?DOMAIN=|DOMAIN|">
+							<img border="0" src="IMG_DATABASE" width="69" height="65"><br>
+							MySQL Databases
+						</a>
+					</TD>
+				</TR>
+				<TR>
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='/CMD_SITE_BACKUP?domain=|DOMAIN|'">
+						<a class=button href="/CMD_SITE_BACKUP?domain=|DOMAIN|">
+							<img border="0" src="IMG_BACKUP" width="75" height="65"><br>
+							Site Backup
+						</a>
+					</TD>
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='HTM_ERROR_PAGES?DOMAIN=|DOMAIN|'">
+						<a class=button href="HTM_ERROR_PAGES?DOMAIN=|DOMAIN|">
+							<img border="0" src="IMG_ERROR_PAGES" width="73" height="65"><br>
+							Error Pages
+						</a>
+					</TD>
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='CMD_PROTECTED_DIRECTORIES?domain=|DOMAIN|'">
+						<a class=button href="CMD_PROTECTED_DIRECTORIES?domain=|DOMAIN|">
+							<img border="0" src="IMG_DIR_PASSWORD" width="79" height="65"><br>
+							Directory Password<br>Protection
+						</a>
+					</TD>
+					<TD vAlign=middle height=100 align="center" class=button onmouseover="this.className='highlighted'" onmouseout="this.className='button'" onclick="location.href='/HTM_ADVANCED?domain=|DOMAIN|'">
+						<a class=button href="/HTM_ADVANCED?domain=|DOMAIN|">
+							<img border="0" src="IMG_ADVANCED" width="79" height="65"><br>
+							Advanced Tools
+						</a>
+					</TD>
+				</TR>
+			</TABLE>
+|HTM_USER_BOTTOM|

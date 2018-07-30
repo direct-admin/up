@@ -1,0 +1,26 @@
+|?SUBJECT=Warning: `COUNT` non-existant E-Mails have just been sent by a script under `SCRIPT_PATH`|
+Some script below the path |SCRIPT_PATH| has just finished sending |COUNT| non-existant emails within a |PERIOD| period, and any script in this path is now blocked.
+There could be a spammer, the script could be compromised, or just sending more emails than usual.
+
+|*if PATH_UNDER_USER_HOME="1"|To unblock this path, go to:
+User Level -> E-Mail Accounts -> E-Mail Usage
+
+or manually remove the path from the file:
+|BLOCKED_SCRIPT_PATHS||*else|The path is outside of the User's home directory.
+The only way to unblock the path is to remove it from the file:
+|BLOCKED_SCRIPT_PATHS||*endif|
+
+|*if PHP_GUESS="highest"||DEAMONNAME| has determined that the following PHP script has sent |HIGHEST_PHP_SCRIPT| E-Mails:
+|BIGGEST_PHP_SCRIPT|
+but the path doesn't match, so we're not sure if this is the offending script.
+
+|*endif||*if PHP_GUESS="matched"||DEAMONNAME| has matched the following PHP script:line below the suspect path, with the number of deliveries:
+|POSSIBLE_PHP_SCRIPTS|
+|*endif||*if AUTO_UNBLOCK="1"|The script will also automatically be unblocked in |AUTO_UNBLOCK_HOURS| Hours.
+We still highly encourage that all scripts in |SCRIPT_PATH| be examined.
+
+|*endif|This warning was triggered by the BlockCracking monitoring tool in exim.
+|*if UNKNOWN_APACHE_SCRIPT="1"|The mail was generated as the 'apache' account and |DEAMONNAME| was not able to determine the sender based on the path.
+Check your exim logs and see this guide: http://help.directadmin.com/item.php?id=455|*else|The script path is managed under the |USERNAME| User account.|*endif|
+
+|MSG_FOOTER|

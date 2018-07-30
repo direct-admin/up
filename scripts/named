@@ -1,0 +1,126 @@
+#!/bin/bash
+#
+# named           This shell script takes care of starting and stopping
+#                 named (BIND DNS server).
+#
+# chkconfig: - 55 45
+# description: named (BIND) is a Domain Name Server (DNS) \
+# that is used to resolve host names to IP addresses.
+# probe: true
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ "${NETWORKING}" = "no" ] && exit 0
+
+[ -f /etc/sysconfig/named ] && . /etc/sysconfig/named
+
+[ -f /usr/sbin/named ] || exit 0
+
+[ -f ${ROOTDIR}/etc/named.conf ] || exit 0
+
+RETVAL=0
+prog="named"
+
+start() {
+        # Start daemons.
+	if [ -n "`/sbin/pidof named`" ]; then
+		echo -n $"$prog: already running"
+		return 1
+	fi
+        echo -n $"Starting $prog: "
+	if [ -n "${ROOTDIR}" -a "x${ROOTDIR}" != "x/" ]; then
+		OPTIONS="${OPTIONS} -t ${ROOTDIR}"
+	fi
+	# Since named doesn't return proper exit codes at the moment
+	# (won't be fixed before 9.2), we can't use daemon here - emulate
+	# its functionality
+	base=$prog
+        named -u named ${OPTIONS}
+	RETVAL=$?
+	usleep 100000
+	if [ -z "`/sbin/pidof named`" ]; then
+		# The child processes have died after fork()ing, e.g.
+		# because of a broken config file
+		RETVAL=1
+	fi
+	[ $RETVAL -ne 0 ] && failure $"$base startup"
+ 	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/named && success $"$base startup"
+	echo
+	return $RETVAL
+}
+stop() {
+        # Stop daemons.
+        echo -n $"Stopping $prog: "
+        killproc named
+	RETVAL=$?
+	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/named
+        echo
+	return $RETVAL
+}
+rhstatus() {
+	status named
+	return $?
+}	
+restart() {
+	stop
+	start
+}	
+reload() {
+	#/usr/sbin/rndc reload >/dev/null 2>&1 || /usr/bin/killall -HUP named
+
+	PID=/var/run/named/named.pid
+	if [ ! -e $PID ]; then
+		PID=/var/run/named.pid
+	fi
+	RET=0;
+	if [ ! -e $PID ]; then
+		killall -HUP named
+		RET=$?
+	else
+		kill -HUP `cat $PID`
+		RET=$?
+	fi
+	return $RET
+}
+probe() {
+	# named knows how to reload intelligently; we don't want linuxconf
+	# to offer to restart every time
+	/usr/sbin/rndc reload >/dev/null 2>&1 || echo start
+	return $?
+}  
+
+# See how we were called.
+case "$1" in
+	start)
+		start
+		;;
+	stop)
+		stop
+		;;
+	status)
+		rhstatus
+		;;
+	restart)
+		restart
+		;;
+	condrestart)
+		[ -f /var/lock/subsys/named ] && restart
+		;;
+	reload)
+		reload
+		;;
+	probe)
+		probe
+		;;
+	*)
+        	echo $"Usage: $0 {start|stop|status|restart|condrestart|reload|probe}"
+		exit 1
+esac
+
+exit $?
+

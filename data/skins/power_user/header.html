@@ -1,0 +1,58 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>|HOSTNAME| - |DEAMONNAME| v|VERSION|</title>
+
+	<script language="JavaScript">
+	<!--
+	//timer for auto-logout
+		function log_me_out()
+		{
+			location.href = '/CMD_LOGOUT';
+		}
+		var logout_timeout = setTimeout('log_me_out();', |SESSION_MINUTES|*60*1000);
+	// -->
+	</script>
+
+	<link href="/CSS_PU_STYLE" type="text/css" rel="stylesheet" />
+
+</head>
+
+<body |BODY| bgcolor="#FFFFFF">
+
+<div align="center">
+  <table border="0" width="750" cellspacing="5" cellpadding="0">
+  <tr><td height="17">
+  		<table width=100% height=100% width="100%" cellspacing=0 cellpadding=0>
+  			<tr>
+  				<td width=30% align=left class=toptext>|USERNAME| : <a class=toptext href="/CMD_LOGOUT">Logout</a> : <a class=toptext href="/HTM_PASSWD">Password</a></td>
+  				<td width=70% align=right class=toptext>Last Login: |LASTLOGIN| from |LASTHOST| [<a class=toptext href="/CMD_LOGIN_HISTORY">Login History</a>]</td>
+  			</tr>
+  		</table>
+  </td></tr>
+    <tr>
+      <td class=bars height="20" valign="top" bgcolor="#C0C0C0">
+			<table width=100% cellspacing=0 cellpadding=3>
+				<tr>
+					<td width=33% align=left>
+						<p>
+							<a href="/CMD_FILE_MANAGER">File Manager</a>
+						</p>
+					</td>
+        			<td width=33% align=center>
+        				<p align="center"><font class=title>|DEAMONNAME| <font class=title style="COLOR: #EE0000">v|VERSION|</font></font></p>
+        			</td>
+        			<td class=nowrap width=33% align=right>
+        				<p>
+					<a class=bottomtext href="/CMD_TICKET?sort1=-1">Message System</a> - |NEWMESSAGES| messages waiting
+        				</p>
+        			</td>
+        		</tr>
+        	</table>
+      </td>
+    </tr>
+    <tr>
+      <td height="*" valign="middle" align="center">
+<p align="center">
